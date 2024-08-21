@@ -17,13 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const cardBody = document.createElement('div');
                 cardBody.className = 'card-body';
-                
+
                 const name = document.createElement('p');
                 name.className = 'card-text';
                 name.textContent = product.name;
 
                 const price = document.createElement('p');
-                price.textContent = `Precio: ${product.price}`;
+                price.textContent = `Precio: ${product.cost}`;
 
                 cardBody.appendChild(name);
                 cardBody.appendChild(price);
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 extraName.textContent = product.name;
 
                 const extraPrice = document.createElement('p');
-                extraPrice.textContent = `Precio: ${product.price}`;
+                extraPrice.textContent = `Precio: ${product.cost}`;
 
                 const description = document.createElement('p');
                 description.className = 'info-card';
