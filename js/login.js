@@ -5,7 +5,7 @@ document.getElementById('registrationForm').addEventListener('submit', function 
   const password = document.getElementById('password').value;
 
   if (username && password) {
-    localStorage.setItem('session', 'valid-token');
+    localStorage.setItem('session', username);
     window.location.href = 'index.html';
   }
 });
