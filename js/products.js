@@ -11,8 +11,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const nameParagraph = productCard.getElementsByClassName('card-text')[0];
       const descriptionParagraph = productCard.getElementsByClassName('info-card')[0];
-
-      if (nameParagraph && descriptionParagraph) {
+      const existenLosElementos = nameParagraph && descriptionParagraph;
+      
+      if (existenLosElementos) {
         include =
           nameParagraph.textContent?.toLowerCase()?.includes(searchText) ||
           descriptionParagraph.textContent?.toLowerCase()?.includes(searchText)
