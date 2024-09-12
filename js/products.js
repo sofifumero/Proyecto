@@ -35,12 +35,13 @@ document.addEventListener('DOMContentLoaded', function() {
   const searchBtn = document.getElementById('search-btn');
   const clearBtn = document.getElementById('clear-btn');
   const sortBySelect = document.getElementById('sort-by');
+  const categoria = localStorage.getItem('catID');
   
   let products = []; // Array para almacenar los productos
 
   // Cargar productos
   function loadProducts() {
-    fetch('https://japceibal.github.io/emercado-api/cats_products/101.json')
+    fetch("https://japceibal.github.io/emercado-api/cats_products/" + categoria + ".json")
       .then(response => response.json())
       .then(data => {
         products = data.products;
@@ -55,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
     productsToDisplay.forEach(product => {
       const productCard = document.createElement('div');
       productCard.className = 'product-card';
-     /* productCard.innerHTML = `
+   /* productCard.innerHTML = `
         <h5>${product.name}</h5>
         <p>Precio: $${product.cost}</p>
         <p>Cantidad Vendida: ${product.sold_count}</p>
@@ -105,3 +106,9 @@ document.addEventListener('DOMContentLoaded', function() {
   // Inicializar
   loadProducts();
 });
+function setProdID(id,name){
+  //guarda el id del producto y el nombre de la categoria en localStorage
+  localStorage.setItem("prodID", id);
+  localStorage.setItem("catNAME", name);
+  window.location = "product-info.html"
+}
