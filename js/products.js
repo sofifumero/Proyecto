@@ -23,3 +23,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+function setProdID(id,name){
+  //guarda el id del producto y el nombre de la categoria en localStorage
+  localStorage.setItem("prodID", id);
+  localStorage.setItem("catNAME", name);
+  window.location = "product-info.html"
+}
