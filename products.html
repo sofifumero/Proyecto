@@ -39,6 +39,35 @@
     </div>
   </nav>
 
+
+  <main class="pb-5 container">
+    <!-- Filtros y Ordenamiento -->
+    <div class="filter-sort">
+      <form id="filter-form">
+        <div class="mb-3">
+          <label for="min-price" class="form-label">Precio Mínimo:</label>
+          <input type="number" id="min-price" class="form-control" placeholder="0" />
+        </div>
+        <div class="mb-3">
+          <label for="max-price" class="form-label">Precio Máximo:</label>
+          <input type="number" id="max-price" class="form-control" placeholder="10000" />
+        </div>
+        <button type="button" id="search-btn" class="btn btn-primary">Buscar</button>
+        <button type="button" id="clear-btn" class="btn btn-secondary">Limpiar</button>
+      </form>
+      
+      <div class="sort-options mt-3">
+        <label for="sort-by" class="form-label">Ordenar por:</label>
+        <select id="sort-by" class="form-select">
+          <option value="price-asc">Precio Ascendente</option>
+          <option value="price-desc">Precio Descendente</option>
+          <option value="relevance-desc">Relevancia (Cantidad Vendida)</option>
+        </select>
+      </div>
+    </div>
+
+
+    
   <!-- ------------------------------------------------------------------------------------------------>
 
   <main class="pb-5 container">
