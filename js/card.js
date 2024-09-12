@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
             products.forEach(product => {
                 const card = document.createElement('div');
                 card.className = 'card';
+                card.onclick = function () {
+                   verProd(product.id);
+                };
 
                 const img = document.createElement('img');
                 img.className = 'card-img-top';
@@ -58,3 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => console.error('Error al cargar los productos:', error));
 });
+function verProd(id){
+    //guardo id del producto y redirecciono
+    localStorage.setItem("prodID", id);
+    window.location = "product-info.html";
+}
