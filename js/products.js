@@ -1,3 +1,33 @@
+
+document.addEventListener("DOMContentLoaded", function () {
+  const searchInput = document.getElementById("searchProductInput");
+  const productContainer = document.getElementById('product-container');
+  searchInput.addEventListener("input", (event) => {
+    const searchText = searchInput.value.toLowerCase();
+    const productCards = productContainer.getElementsByClassName('card');
+
+    for (let productCard of productCards) {
+      let include = true;
+
+      const nameParagraph = productCard.getElementsByClassName('card-text')[0];
+      const descriptionParagraph = productCard.getElementsByClassName('info-card')[0];
+      const existenLosElementos = nameParagraph && descriptionParagraph;
+      
+      if (existenLosElementos) {
+        include =
+          nameParagraph.textContent?.toLowerCase()?.includes(searchText) ||
+          descriptionParagraph.textContent?.toLowerCase()?.includes(searchText)
+      }
+
+      productCard.style.display = include ? "block" : "none";
+    }
+  });
+});
+
+
+
+/* Filtros */
+
 document.addEventListener('DOMContentLoaded', function() {
   const productContainer = document.getElementById('product-container');
   const minPriceInput = document.getElementById('min-price');
@@ -5,12 +35,13 @@ document.addEventListener('DOMContentLoaded', function() {
   const searchBtn = document.getElementById('search-btn');
   const clearBtn = document.getElementById('clear-btn');
   const sortBySelect = document.getElementById('sort-by');
+  const categoria = localStorage.getItem('catID');
   
   let products = []; // Array para almacenar los productos
 
   // Cargar productos
   function loadProducts() {
-    fetch('https://japceibal.github.io/emercado-api/cats_products/101.json')
+    fetch("https://japceibal.github.io/emercado-api/cats_products/" + categoria + ".json")
       .then(response => response.json())
       .then(data => {
         products = data.products;
@@ -25,13 +56,11 @@ document.addEventListener('DOMContentLoaded', function() {
     productsToDisplay.forEach(product => {
       const productCard = document.createElement('div');
       productCard.className = 'product-card';
-  /*
-      productCard.innerHTML = `
+   /* productCard.innerHTML = `
         <h5>${product.name}</h5>
         <p>Precio: $${product.cost}</p>
         <p>Cantidad Vendida: ${product.sold_count}</p>
-      `;
-*/
+      `; */
       productContainer.appendChild(productCard);
     });
   }
@@ -77,3 +106,9 @@ document.addEventListener('DOMContentLoaded', function() {
   // Inicializar
   loadProducts();
 });
+function setProdID(id,name){
+  //guarda el id del producto y el nombre de la categoria en localStorage
+  localStorage.setItem("prodID", id);
+  localStorage.setItem("catNAME", name);
+  window.location = "product-info.html"
+}
