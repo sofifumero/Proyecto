@@ -1,4 +1,5 @@
 let currentProduct = [];
+let currentComment= [];
 
 function showProductInfo(prod) {
     //Cargo la informacion de producto
@@ -59,6 +60,47 @@ function showProductInfo(prod) {
     }
     
 }
+function showProductComments() {
+  let htmlContent = `<div class="comentario-box-container">`; // Contenedor para todos los comentarios
+  for (let i = 0; i < currentComment.length; i++) {
+    let comment = currentComment[i];
+    htmlContent += `
+      <div class="box">
+        <div class="box-top">
+          <div class="perfil">
+            <div class="username">
+              <h4>${comment.user}</h4>
+            </div>
+          </div>
+          <div class="calificacion">
+            ${generateStars(comment.score)}
+          </div>
+        </div>
+        <div class="review">
+          <p>${comment.description}</p>
+        </div>
+        <div class="fecha">
+          <h4>${comment.dateTime}</h4>
+        </div>
+      </div>
+    `;
+  }
+  htmlContent += `</div>`; // Cierra el contenedor
+  document.getElementById("product-comment").innerHTML = htmlContent;
+
+  function generateStars(score) {
+    let stars = "";
+    for (let i = 0; i < 5; i++) {
+      if (i < score) {
+        stars += '<i class="fas fa-star"></i>';
+      } else {
+        stars += '<i class="far fa-star"></i>';
+      }
+    }
+    return stars;
+  }
+}
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
@@ -70,4 +112,13 @@ document.addEventListener("DOMContentLoaded", function (e) {
         }
     });
     
+});
+document.addEventListener("DOMContentLoaded", function (e) {
+  getJSONData(PRODUCT_INFO_COMMENTS_URL + localStorage.getItem('prodID')+'.json').then(function (resultObj) {
+      if (resultObj.status === "ok") {
+          currentComment = resultObj.data
+          showProductComments(currentComment);
+      }
+  });
+  
 });
