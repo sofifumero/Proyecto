@@ -1,59 +1,88 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <title>eMercado - Todo lo que busques está aquí</title>
 
-    <link
-      href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i"
-      rel="stylesheet"
-    />
-    <link href="css/font-awesome.min.css" rel="stylesheet" />
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/styles.css" rel="stylesheet" />
-    <link href="css/cards.css" rel="stylesheet" />
-  </head>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>eMercado - Todo lo que busques está aquí</title>
 
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-      <div class="container">
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav w-100 justify-content-between">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="categories.html">Categorías</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="sell.html">Vender</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" id="app-nav-bar-usuario">Usuario</a>
-            </li>
-          </ul>
-        </div>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
+  <link href="css/cards.css" rel="stylesheet" />
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav w-100 justify-content-between">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="categories.html">Categorías</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sell.html">Vender</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="app-nav-bar-usuario">Usuario</a>
+          </li>
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
+
+
+  <main class="pb-5 container">
+    <!-- Filtros y Ordenamiento -->
+    <div class="filter-sort">
+      <form id="filter-form">
+        <div class="mb-3">
+          <label for="min-price" class="form-label">Precio Mínimo:</label>
+          <input type="number" id="min-price" class="form-control" placeholder="0" />
+        </div>
+        <div class="mb-3">
+          <label for="max-price" class="form-label">Precio Máximo:</label>
+          <input type="number" id="max-price" class="form-control" placeholder="10000" />
+        </div>
+        <button type="button" id="search-btn" class="btn btn-primary">Buscar</button>
+        <button type="button" id="clear-btn" class="btn btn-secondary">Limpiar</button>
+      </form>
+
+      <div class="sort-options mt-3">
+        <label for="sort-by" class="form-label">Ordenar por:</label>
+        <select id="sort-by" class="form-select">
+          <option value="price-asc">Precio Ascendente</option>
+          <option value="price-desc">Precio Descendente</option>
+          <option value="relevance-desc">Relevancia (Cantidad Vendida)</option>
+        </select>
+      </div>
+    </div>
+
+
 
     <!-- ------------------------------------------------------------------------------------------------>
 
     <main class="pb-5 container">
+      <div class="container search-container p-3">
+        <div class="row">
+          <div>
+            <form>
+              <div class="form-group">
+                <input type="search" class="form-control" id="searchProductInput" placeholder="Buscar producto">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
       <div class="container" id="product-container">
         <!-- Los productos se cargarán aquí dinámicamente -->
       </div>
@@ -68,9 +97,7 @@
         </p>
         <p>
           Este sitio forma parte de
-          <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
-            >Jovenes a Programar</a
-          >
+          <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
         </p>
       </div>
     </footer>
