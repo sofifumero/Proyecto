@@ -1,5 +1,5 @@
 let currentProduct = [];
-let currentComment= [];
+let currentComment = [];
 
 function showProductInfo(prod) {
     //Cargo la informacion de producto
@@ -60,6 +60,7 @@ function showProductInfo(prod) {
     }
     
 }
+
 function showProductComments() {
   let htmlContent = `<div class="comentario-box-container">`; // Contenedor para todos los comentarios
   for (let i = 0; i < currentComment.length; i++) {
@@ -101,6 +102,41 @@ function showProductComments() {
   }
 }
 
+function cargarProductosRelacionados(productosRelacionados) {
+  const container = document.getElementById('product-cards');
+
+  productosRelacionados.forEach(product => {
+    const columna = document.createElement('div');
+    columna.className = 'col-md-3';
+
+    const tarjeta = document.createElement('div');
+    tarjeta.className = 'card mb-2 cursor-pointer';
+
+    tarjeta.onclick = () => {
+      localStorage.setItem("prodID", product.id);
+      window.location.href = 'product-info.html';
+    };
+
+    const imagen = document.createElement('img');
+    imagen.src = product.image;
+    imagen.className = 'card-img-top';
+    imagen.alt = product.name;
+
+    const cuarpoTarjeta = document.createElement('div');
+    cuarpoTarjeta.className = 'card-body';
+
+    const tituloTarjeta = document.createElement('h5');
+    tituloTarjeta.className = 'card-title';
+    tituloTarjeta.textContent = product.name;
+
+    cuarpoTarjeta.appendChild(tituloTarjeta);
+    tarjeta.appendChild(imagen);
+    tarjeta.appendChild(cuarpoTarjeta);
+    columna.appendChild(tarjeta);
+    container.appendChild(columna);
+  });
+}
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
@@ -121,4 +157,15 @@ document.addEventListener("DOMContentLoaded", function (e) {
       }
   });
   
+});
+
+// Cargar detalle de producto
+document.addEventListener("DOMContentLoaded", function (e) {
+  const url = PRODUCT_INFO_DETAIL_URL.replace('{productId}', localStorage.getItem('prodID'));
+  getJSONData(url)
+    .then(function (resultObj) {
+      if (resultObj.status === "ok") {
+        cargarProductosRelacionados(resultObj.data.relatedProducts);
+      }
+    });
 });
