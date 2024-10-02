@@ -276,6 +276,7 @@ h1 {
 }
 .contenedor-info{
   padding-left: 20px;
+  margin-bottom: 30px;
 }
 .botoncomprar{
   background-color:black;
@@ -299,4 +300,59 @@ h1 {
 }
 .imgprin{
   border-radius: 10px;
+}
+#comprar{
+  margin-bottom: 10px;
+}
+#comentario{
+  display: inline;
+  
+}
+#cali{
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+
+}
+#estrellas{
+  margin-left: 10px;
+}
+#estrellas:not(:checked)>input{
+  position: absolute;
+  appearance: none;
+
+}
+#estrellas:not(:checked)>label{
+  float: right;
+  cursor: pointer;
+  font-size: 30px;
+  color:gray;
+}
+#estrellas:not(:checked)>label::before {
+  content: '★'; 
+}
+#estrellas>input:checked+label:hover,
+#estrellas>input:checked+label:hover~label,
+#estrellas>input:checked+label:hover,
+#estrellas>input:checked+label:hover~label,
+#estrellas>label:hover~input:checked~label{
+  color: yellow;
+}
+
+#estrellas:not(:checked)>label:hover,
+#estrellas:not(:checked)>label:hover~label{
+  color: yellow;
+}
+
+#estrellas>input:checked~label{
+  color: yellow;
+
+}
+#enviar{
+ display: flex;
+ justify-content: flex-end;
+}
+#env{
+  background-color: black;
+ color: white;
 }
