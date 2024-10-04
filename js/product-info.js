@@ -169,3 +169,60 @@ document.addEventListener("DOMContentLoaded", function (e) {
       }
     });
 });
+
+document.getElementById('env').addEventListener('click', function(event) {
+  event.preventDefault();  // Evita el envío real del formulario
+
+  // Capturar los valores del formulario
+  const username = document.querySelector('input[type="text"]').value;
+  const date = new Date().toISOString().split('T')[0];  
+  const review = document.querySelector('textarea').value;
+  const rating = document.querySelector('input[name="rate"]:checked') ? document.querySelector('input[name="rate"]:checked').value : 0;
+
+  
+
+  // Crear nuevo comentario en HTML
+  const commentBox = `
+      <div class="box">
+          <div class="box-top">
+              <div class="perfil">
+                  <div class="username">
+                      <h4>${username}</h4>
+                  </div>
+              </div>
+              <div class="calificacion">
+                  ${generateStars(rating)}
+              </div>
+          </div>
+          <div class="review">
+              <p>${review}</p>
+          </div>
+          <div class="fecha">
+              <h4>${date}</h4>
+          </div>
+      </div>
+  `;
+
+  // Agregar el nuevo comentario a la lista de comentarios
+  document.querySelector('.comentario-box-container').innerHTML += commentBox;
+
+  // Limpiar el formulario
+  document.querySelector('input[type="text"]').value = '';
+  document.querySelector('textarea').value = '';
+  document.querySelector('input[name="rate"]:checked').checked = false;
+});
+
+// Añadir estrellas
+function generateStars(rating) {
+  let starsHTML = '';
+  for (let i = 1; i <= 5; i++) {
+      if (i <= rating) {
+          starsHTML += '<i class="fas fa-star"></i>';  
+      } else {
+          starsHTML += '<i class="far fa-star"></i>';  
+      }
+  }
+  return starsHTML;
+}
+
+  
