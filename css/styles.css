@@ -487,3 +487,194 @@ h1 {
   align-items: center;
   margin-left: 10px; 
 }
+/* Modo oscuro*/
+.switch-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color:#0d6efd;;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.night-mode  nav{
+  background-color: #fff;
+}
+
+.night-mode {
+  background-color: #2c2c2c;
+}
+
+.night-mode  h1 {
+  color: #0d6efd;
+  text-shadow: blue 0.1em 0.1em 0.2em;
+   
+}
+.night-mode  h2 {
+  color: #0d6efd;
+  text-shadow: blue 0.1em 0.1em 0.2em;
+
+}
+.night-mode  h3 {
+  color:#fff
+}
+.night-mode  h4 {
+  color:#fff
+}
+.night-mode  p {
+  color:#fff
+}
+.night-mode  .box{
+  background-color: #4b4b4b;
+}
+.night-mode  .box-comment{
+  background-color: #4b4b4b;
+}
+.night-mode  .box-comment label{
+  color: #fff;
+}
+.night-mode  .box-comment textarea{
+  background-color: #979797;
+}
+.night-mode  .box-comment input{
+  background-color: #979797;
+}
+
+.night-mode  .botoncomprar{
+  background-color: #0d6efd;
+  color: black;
+ 
+}
+.night-mode  #env{
+  background-color: #0d6efd ;
+  color: black;
+  border: black 2px;
+  border-radius: 5px;
+}
+
+.night-mode  .card-body{
+  background-color: #4b4b4b;
+}
+.night-mode  h5.card-title{
+  color: #fff;
+}
+
+
+.night-mode .calificacion{
+  color: #0d6efd;
+}
+.night-mode #estrellas:not(:checked)>label:hover,
+#estrellas:not(:checked)>label:hover~label{
+  color: #0d6efd;
+}
+.night-mode #estrellas>input:checked+label:hover,
+#estrellas>input:checked+label:hover~label,
+#estrellas>input:checked+label:hover,
+#estrellas>input:checked+label:hover~label,
+#estrellas>label:hover~input:checked~label{
+  color: #0d6efd;
+}
+.night-mode #estrellas>input:checked~label{
+  color: #0d6efd;
+}
+
+.night-mode .album.py-5.bg-light {
+  background-color: #2c2c2c !important;
+}
+
+
+.night-mode .jumbotron {
+  background: url('../img/cover_back_night.png');
+  background-color: #2c2c2c;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.night-mode #autos, .night-mode #juguetes, .night-mode #muebles {
+  background-color: #4b4b4b;
+}
+
+#autos, #juguetes, #muebles {
+  background-color: #fff;
+}
+
+.night-mode .btn {
+  background-color: #4b4b4b !important;
+  color: #fff;
+  border: #2c2c2c;
+}
+
+
+.night-mode .list-group-item {
+  background-color: #4b4b4b;
+}
+
+.night-mode .form-control {
+  background-color: #4b4b4b;
+}
+
+.night-mode label {
+  color: #fff;
+}
+
+.night-mode .form-select {
+  background-color: #4b4b4b;
+}
+
+.night-mode h6.my-0 {
+  color: #fff;
+}
+
+.night-mode span {
+  color: #fff;
+}
+
+.night-mode h5.mb-3 {
+  color: #fff;
+}
+
+.night-mode #file-upload {
+  background-color: #4b4b4b;
+}
