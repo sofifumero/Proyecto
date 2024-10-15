@@ -540,7 +540,7 @@ input:checked + .slider {
 input:checked + .slider:before {  
   transform: translateX(26px);  
   content: "🌙";  /* Símbolo de luna */
-  background-color: #000000; 
+  background-color: #2c2c2c; 
 }
 
 .night-mode  nav{
