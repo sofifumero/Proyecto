@@ -518,7 +518,7 @@ textarea{
     border-radius: 5px; /* Bordes redondeados para un mejor aspecto */
     background-color: #ffffff;
     box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
-    margin-left: 1.7rem;
+    margin-left: 1rem;
   }
 
   /* Estilo de texto para comentarios */
