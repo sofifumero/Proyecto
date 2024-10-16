@@ -493,8 +493,21 @@ textarea{
   align-items: center;
   margin-left: 10px; 
 }
+@media (max-width: 1024px) {
+  .jumbotron {
+    height: 30vh; /* Ajusta la altura para pantallas pequeñas */
+  }
+}
+@media (max-width: 768px) {
+  .jumbotron {
+    height: 25vh; /* Ajusta la altura para pantallas pequeñas */
+  }
+}
 /* Media Query para Smartphone Pequeño */
 @media (max-width: 480px) {
+    .jumbotron {
+      height: 20vh; /* Ajusta la altura para pantallas pequeñas */
+    }
   .botoncomprar{
     margin-left: 20%;
   }
