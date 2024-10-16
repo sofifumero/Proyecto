@@ -733,6 +733,10 @@ input:checked + .slider:before {
   box-sizing: border-box;
 }
 
+#profileForm input:invalid {
+  border: 2px solid red;
+}
+
 
 /* Cambio de foto de perfil circular */
 .foto-perfil {
