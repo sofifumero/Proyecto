@@ -708,6 +708,9 @@ input:checked + .slider:before {
 .night-mode .boton-filtro:hover{
   background-color: #0d6efd;
 }
+.night-mode .form-group-login input[type="submit"] {
+  background-color: #0d6efd;
+}
 
 /*perfil*/
 .containerProfile {
