@@ -490,6 +490,88 @@ h1 {
   align-items: center;
   margin-left: 10px; 
 }
+/* Media Query para Smartphone Pequeño */
+@media (max-width: 480px) {
+  .botoncomprar{
+    margin-left: 20%;
+  }
+  .box{
+    width: 90%;
+  }
+  .container-comment {
+    display: flex;
+    flex-direction: column; /* Apila los comentarios verticalmente */
+    align-items: stretch; /* Asegura que ocupen todo el ancho */
+    width: 100%; /* Ocupa el 100% del ancho */
+    padding: 10px; /* Espacio interno para el contenedor */
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+  }
+
+  .box-comment {
+    width: 100%; /* Asegura que cada caja de comentario ocupe el 100% del ancho */
+    margin-bottom: 15px; /* Espacio entre comentarios */
+    padding: 15px; /* Padding interno para las cajas */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Agrega sombra para mayor separación */
+    border-radius: 5px; /* Bordes redondeados para un mejor aspecto */
+    background-color: #ffffff; /* Fondo blanco para las cajas de comentarios */
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+  }
+
+  /* Estilo de texto para comentarios */
+  .comment {
+    font-size: 1rem; /* Ajusta el tamaño de fuente para mejor legibilidad */
+    color: #3d3d3d; /* Color del texto */
+    margin: 0; /* Elimina margenes en el texto */
+  }
+  .contenedor-de-producto{
+    display: flex;
+    flex-direction: column; /* Asegura que todo esté en una columna */
+    width: 100%; /* Ocupa el ancho completo */
+  }
+ textarea{
+  width: 90%;
+ }
+ .username h4{
+  font-size: 12px;
+ }
+  .row {
+    display: flex;
+    flex-direction: column; /* Apila los elementos verticalmente */
+  }
+
+  .col-2 {
+    width: 100%; /* Cada columna ocupa el 100% del ancho */
+    float: none; /* Elimina el float para que se comporten como columnas flexibles */
+    margin-bottom: 20px; /* Espacio entre las columnas */
+    display: contents;
+  }
+
+  /* Galería de imágenes */
+  .small-img-row {
+    display: flex; /* Muestra las imágenes pequeñas en fila */
+    overflow-x: auto; /* Permite desplazamiento horizontal si hay muchas imágenes */
+    width: 100%; /* Asegura que la galería ocupe el 100% */
+    margin-top: 10px; /* Espacio superior para separar de la imagen principal */
+  }
+
+  .imgprin{
+    max-width: 100%; /* Asegura que la imagen principal no exceda el contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    width: 100%; /* Asegura que ocupe el 100% del ancho del contenedor */
+  }
+
+  .small-img {
+    flex: 0 0 25%; /* Cada imagen pequeña ocupa un 25% del ancho */
+    margin: 0 5px; /* Espacio entre imágenes pequeñas */
+  }
+
+  .contenedor-info {
+    padding: 10px; /* Reduce el padding para adaptarse mejor */
+    margin-left: 40px;
+    margin-bottom: -2rem;
+  }
+
+}
 /* Modo oscuro*/
 .switch-wrapper {  
   display: flex;  
