@@ -13,6 +13,8 @@
     />
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
+    <link javascript src="js/my-profile.js"></script>
+
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -72,12 +74,53 @@
         </div>
       </div>
     </nav>
-    <main>
-      <div class="container">
-        <div class="alert alert-danger text-center" role="alert">
-          <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-        </div>
+   
+      <main>  
+        <div class="containerProfile">
+          <h2 class="text-title">Perfil de Usuario</h2>
+     
+          <!-- Imagen de perfil -->
+          <div class="foto-perfil" id="fotoPreview" onclick="document.getElementById('fotoPerfil').click()">
+          </div>
+          <input type="file" id="fotoPerfil" accept="image/*" onchange="cambiarFotoPerfil(event)">
+     
+          <form id="profileForm">
+              <div class="field">
+                  <label for="nombre">Nombre*</label>
+                  <input type="text" id="nombre" name="nombre" required>
+              </div>
+     
+              <div class="field">
+                  <label for="segundoNombre">Segundo nombre</label>
+                  <input type="text" id="segundoNombre" name="segundoNombre">
+              </div>
+     
+              <div class="field">
+                  <label for="apellido">Apellido*</label>
+                  <input type="text" id="apellido" name="apellido" required>
+              </div>
+     
+              <div class="field">
+                  <label for="segundoApellido">Segundo apellido</label>
+                  <input type="text" id="segundoApellido" name="segundoApellido">
+              </div>
+     
+              <div class="field">
+                  <label for="email">E-mail*</label>
+                  <input type="email" id="email" name="email" readonly required>
+              </div>
+     
+              <div class="field">
+                  <label for="telefono">Teléfono de contacto</label>
+                  <input type="tel" id="telefono" name="telefono">
+              </div>
+     
+              <button type="button" onclick="guardarCambios()">Guardar cambios</button>
+     
+              <p id="errorMsg" class="error">Por favor, complete los campos obligatorios.</p>
+          </form>
       </div>
+     
     </main>
     <footer class="text-muted">
       <div class="container">

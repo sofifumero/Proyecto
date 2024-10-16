@@ -8,6 +8,20 @@ let DOLLAR_SYMBOL = "USD ";
 let PESO_SYMBOL = "UYU ";
 let PERCENTAGE_SYMBOL = '%';
 let MSG = "FUNCIONALIDAD NO IMPLEMENTADA";
+const body = document.body;
+/*Definicion de modo switch*/ 
+const modeSwitch = document.getElementById('mode-switch');
+
+/* Verificación del almacenamiento local:*/
+if (localStorage.getItem('nightMode') === 'true') {
+  body.classList.add('night-mode');
+  modeSwitch.checked = true;
+}
+/*Escucha de cambios en el interruptor */
+modeSwitch.addEventListener('change', () => {
+  body.classList.toggle('night-mode', modeSwitch.checked);
+  localStorage.setItem('nightMode', modeSwitch.checked);
+});
 
 //Función que se utiliza para actualizar los costos de publicación
 function updateTotalCosts(){
