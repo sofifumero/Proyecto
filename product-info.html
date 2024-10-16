@@ -42,9 +42,9 @@
               </ul>
             </div>
           </li>
-          <label class="switch">
-                <input type="checkbox" id="mode-switch">
-                <span class="slider"></span>
+          <label class="switch" style="display: none;">
+            <input type="checkbox" id="mode-switch">
+            <span class="slider"></span>
           </label>
         </ul>
       </div>
@@ -159,19 +159,27 @@
     </section>
 
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-          const usernameSpan = document.getElementById('username');
-          const dateSpan = document.getElementById('date');
-  
-          // Obtener el nombre de usuario desde localStorage, o establecer uno predeterminado
-          let username = localStorage.getItem('session') || 'Usuario Predeterminado';
-          usernameSpan.textContent = username;
-  
-          // Obtener la fecha actual y formatearla
-          const today = new Date();
-          const formattedDate = today.toISOString().slice(0, 19).replace('T', ' '); // Formato: YYYY-MM-DD HH:mm:ss
-          dateSpan.textContent = formattedDate;
-      });
+   document.addEventListener('DOMContentLoaded', () => {
+    const usernameSpan = document.getElementById('username');
+    const dateSpan = document.getElementById('date');
+
+    // Obtener el nombre de usuario desde localStorage, o establecer uno predeterminado
+    let username = localStorage.getItem('session') || 'Usuario Predeterminado';
+    usernameSpan.textContent = username;
+
+    // Obtener la fecha y hora actual
+    const today = new Date();
+
+    // Obtener la hora de Montevideo (UTC-3)
+    const options = { timeZone: 'America/Montevideo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+    const localeString = today.toLocaleString('es-UY', options);
+
+    // Formatear la fecha y hora
+    const [date, time] = localeString.split(', ');
+    const formattedDate = date.split('/').reverse().join('-') + ' ' + time;
+
+    dateSpan.textContent = formattedDate;
+});
   </script>
   
    
