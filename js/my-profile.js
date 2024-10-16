@@ -1,16 +1,4 @@
-/*// Simulación de login: verificar si el usuario está logueado
-document.addEventListener("DOMContentLoaded", function() {
-    const emailLogin = localStorage.getItem("emailLogin") || "";
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
 
-
-    if (!isLoggedIn) {
-        alert("Debe iniciar sesión para acceder al perfil.");
-        window.location.href = "login.html";  // Redirige a la página de login
-    } else {
-        document.getElementById("email").value = emailLogin;  // Cargar email del login
-    }
-});  */
 
 
 // Cambiar la foto de perfil
