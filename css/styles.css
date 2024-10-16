@@ -506,7 +506,7 @@ textarea{
 /* Media Query para Smartphone Pequeño */
 @media (max-width: 480px) {
     .jumbotron {
-      height: 20vh; /* Ajusta la altura para pantallas pequeñas */
+      height: 15vh; /* Ajusta la altura para pantallas pequeñas */
     }
   .botoncomprar{
     margin-left: 20%;
