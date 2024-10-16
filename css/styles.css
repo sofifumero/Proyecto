@@ -345,6 +345,9 @@ h1 {
   flex-wrap: wrap;
   width: 100%;
 }
+textarea{
+  width: 90%;
+}
 
 .box {
   width: 500px;
