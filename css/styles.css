@@ -508,12 +508,12 @@ h1 {
   }
 
   .box-comment {
-    width: 100%; /* Asegura que cada caja de comentario ocupe el 100% del ancho */
+    width: 90%; /* Asegura que cada caja de comentario ocupe el 100% del ancho */
     margin-bottom: 15px; /* Espacio entre comentarios */
     padding: 15px; /* Padding interno para las cajas */
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Agrega sombra para mayor separación */
     border-radius: 5px; /* Bordes redondeados para un mejor aspecto */
-    background-color: #ffffff; /* Fondo blanco para las cajas de comentarios */
+    background-color: #ffffff;
     box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
     margin-left: 1.7rem;
   }
@@ -521,7 +521,7 @@ h1 {
   /* Estilo de texto para comentarios */
   .comment {
     font-size: 1rem; /* Ajusta el tamaño de fuente para mejor legibilidad */
-    color: #3d3d3d; /* Color del texto */
+    color: #3d3d3d; 
     margin: 0; /* Elimina margenes en el texto */
   }
   .contenedor-de-producto{
