@@ -46,9 +46,17 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!session) {
     window.location.href = 'login.html';
   } else {
+    const btnCerrarSesion = document.getElementById('btn-cerrar-sesion');
+    btnCerrarSesion.onclick = () => {
+      localStorage.setItem('session', '');
+      window.location.href = 'login.html';
+    };
+
     const usuarioElem = document.getElementById("app-nav-bar-usuario")
     if (usuarioElem) {
       usuarioElem.innerText = session;
     }
   }
+
+
 });
