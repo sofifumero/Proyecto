@@ -515,6 +515,7 @@ h1 {
     border-radius: 5px; /* Bordes redondeados para un mejor aspecto */
     background-color: #ffffff; /* Fondo blanco para las cajas de comentarios */
     box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+    margin-left: 1.7rem;
   }
 
   /* Estilo de texto para comentarios */
