@@ -229,7 +229,7 @@ h1 {
 }
 
 .form-group-login input[type="submit"] {
-    background-color: #007bff;
+    background-color: #f09100;
     color: #ffffff;
     border: none;
     padding: 15px;
@@ -242,11 +242,11 @@ h1 {
 }
 
 .form-group-login input[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: #eae13d;
 }
 
 .form-group-login input[type="submit"]:active {
-    background-color: #004494;
+    background-color: #eae13d;
 }
 /* Vista del producto */
 .contenedor-de-producto{
@@ -278,14 +278,14 @@ h1 {
   padding-left: 20px;
 }
 .botoncomprar{
-  background-color:black;
+  background-color:#f09100;
   padding: 10px;
   text-align: center;
   width: 40%;
   color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
   margin-top: 10px;
   margin-left: 15%;
+  border: #f09100;
   border-radius: 5px;
 }
 .nameprod{
@@ -344,6 +344,9 @@ h1 {
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
+}
+textarea{
+  width: 90%;
 }
 
 .box {
@@ -437,8 +440,11 @@ h1 {
  justify-content: center;
 }
 #env{
-  background-color: black;
+  background-color: #f09100;
  color: white;
+ text-align: center;
+ margin: 20px auto; 
+  border-radius: 5px;
 }
 /* caja de comentarios*/
 .container-comment {
@@ -454,7 +460,7 @@ h1 {
   margin: 10px;
   box-sizing: border-box;
   width: 50%; 
-  padding-left: 5%;
+  padding-left: 7%;
   justify-content: center;
 }
 
@@ -465,7 +471,7 @@ h1 {
 }
 
 .botonEnviar {
-  background-color: black;
+  background-color: #f09100;
   padding: 10px;
   text-align: center;
   width: 25%;
@@ -487,10 +493,107 @@ h1 {
   align-items: center;
   margin-left: 10px; 
 }
+@media (max-width: 1024px) {
+  .jumbotron {
+    height: 30vh; /* Ajusta la altura para pantallas pequeñas */
+  }
+}
+@media (max-width: 768px) {
+  .jumbotron {
+    height: 25vh; /* Ajusta la altura para pantallas pequeñas */
+  }
+}
+/* Media Query para Smartphone Pequeño */
+@media (max-width: 480px) {
+    .jumbotron {
+      height: 15vh; /* Ajusta la altura para pantallas pequeñas */
+    }
+  .botoncomprar{
+    margin-left: 20%;
+  }
+  .box{
+    width: 90%;
+  }
+  .container-comment {
+    display: flex;
+    flex-direction: column; /* Apila los comentarios verticalmente */
+    align-items: stretch; /* Asegura que ocupen todo el ancho */
+    width: 100%; /* Ocupa el 100% del ancho */
+    padding: 10px; /* Espacio interno para el contenedor */
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+  }
+
+  .box-comment {
+    width: 90%; /* Asegura que cada caja de comentario ocupe el 100% del ancho */
+    margin-bottom: 15px; /* Espacio entre comentarios */
+    padding: 15px; /* Padding interno para las cajas */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Agrega sombra para mayor separación */
+    border-radius: 5px; /* Bordes redondeados para un mejor aspecto */
+    background-color: #ffffff;
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+    margin-left: 1rem;
+  }
+
+  /* Estilo de texto para comentarios */
+  .comment {
+    font-size: 1rem; /* Ajusta el tamaño de fuente para mejor legibilidad */
+    color: #3d3d3d; 
+    margin: 0; /* Elimina margenes en el texto */
+  }
+  .contenedor-de-producto{
+    display: flex;
+    flex-direction: column; /* Asegura que todo esté en una columna */
+    width: 100%; /* Ocupa el ancho completo */
+  }
+ textarea{
+  width: 90%;
+ }
+ .username h4{
+  font-size: 12px;
+ }
+  .row {
+    display: flex;
+    flex-direction: column; /* Apila los elementos verticalmente */
+  }
+
+  .col-2 {
+    width: 100%; /* Cada columna ocupa el 100% del ancho */
+    float: none; /* Elimina el float para que se comporten como columnas flexibles */
+    margin-bottom: 20px; /* Espacio entre las columnas */
+    display: contents;
+  }
+
+  /* Galería de imágenes */
+  .small-img-row {
+    display: flex; /* Muestra las imágenes pequeñas en fila */
+    overflow-x: auto; /* Permite desplazamiento horizontal si hay muchas imágenes */
+    width: 100%; /* Asegura que la galería ocupe el 100% */
+    margin-top: 10px; /* Espacio superior para separar de la imagen principal */
+  }
+
+  .imgprin{
+    max-width: 100%; /* Asegura que la imagen principal no exceda el contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    width: 100%; /* Asegura que ocupe el 100% del ancho del contenedor */
+  }
+
+  .small-img {
+    flex: 0 0 25%; /* Cada imagen pequeña ocupa un 25% del ancho */
+    margin: 0 5px; /* Espacio entre imágenes pequeñas */
+  }
+
+  .contenedor-info {
+    padding: 10px; /* Reduce el padding para adaptarse mejor */
+    margin-left: 40px;
+    margin-bottom: -2rem;
+  }
+
+}
 /* Modo oscuro*/
 .switch-wrapper {  
   display: flex;  
   align-items: center;
+  justify-content: center; /* Center the switch horizontally */
 }
 
 .switch {  
@@ -513,7 +616,7 @@ h1 {
   left: 0;  
   right: 0;  
   bottom: 0;  
-  background-color: rgb(250, 219, 67);  
+  background-color: #f09100;  
   transition: 0.4s;  
   border-radius: 34px;
 }
@@ -683,20 +786,50 @@ input:checked + .slider:before {
 .night-mode #file-upload {
   background-color: #4b4b4b;
 }
-
+.night-mode .containerProfile{
+  background-color: #3d3d3d;
+}
+.night-mode .input-perfil{
+  background-color: #4b4b4b;
+}
+.night-mode .boton-perfil{
+  background-color: #0d6efd;
+}
+.night-mode .boton-perfil:hover{
+  background-color: #0d6efd;
+}
+.night-mode .container-login{
+  background-color: #3d3d3d;
+}
+.night-mode .input-login{
+  background-color: #4b4b4b;
+}
+.night-mode .boton-filtro{
+  background-color: #0d6efd;
+}
+.night-mode .boton-filtro:hover{
+  background-color: #0d6efd;
+}
+.night-mode .form-group-login input[type="submit"] {
+  background-color: #0d6efd;
+}
 
 /*perfil*/
-.containerProfile{
+.containerProfile {
   max-width: 700px;
   width: 100%;
   box-sizing: border-box;
-  padding: 25px ;
-  border-radius: 5px;
+  padding: 25px;
   background-color: #fffcfc;
-  justify-content: center;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
-
 
 .text-title {
   font-family: 'Calibri';
@@ -706,25 +839,26 @@ input:checked + .slider:before {
   justify-content: center;
 }
 
-
 #profileForm {
-    display: flex;
-   flex-wrap: wrap;
-   justify-content: space-between;
-   margin: 10px 12px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 10px 12px 0;
+  width: 100%;
 }
- 
+
 #profileForm .field {
   width: calc(100% / 2 - 20px);
   margin-bottom: 10px;
   display: block;
- 
 }
+
 #profileForm label {
   display: block;
   font-weight: 500;
   margin-bottom: 10px;
 }
+
 #profileForm input {
   width: 100%;
   padding: 10px;
@@ -732,7 +866,6 @@ input:checked + .slider:before {
   border-radius: 5px;
   box-sizing: border-box;
 }
-
 
 /* Cambio de foto de perfil circular */
 .foto-perfil {
@@ -764,25 +897,56 @@ input:checked + .slider:before {
 }
 
 
-button {
+.boton-perfil {
   width: auto;
-  background-color: #4CAF50;
+  background-color: #f09100;
   color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  float: right;
+  margin: 20px auto; /* Asegúrate de centrar el botón */
+  display: block;
+  text-align: center;
 }
 
-
-button:hover {
-  background-color: #45a049;
+.boton-perfil:hover {
+  background-color: #eae13d;
 }
 
+.centered {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
 
 .error {
   color: red;
   font-size: 0.9em;
   display: none;
 }
+.boton-filtro {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: #f09100; 
+  color: white;
+  margin: 0 10px; 
+  display: unset
+}
+.boton-filtro:hover{
+  background-color: #eae13d;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center; /* Centra los botones horizontalmente */
+  align-items: center;
+  margin-top: 20px; /* Espacio superior opcional */
+}
+
+
+  

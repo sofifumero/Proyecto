@@ -1,19 +1,17 @@
-// Simulación de login: verificar si el usuario está logueado
-document.addEventListener("DOMContentLoaded", function() {
-    const emailLogin = localStorage.getItem("emailLogin") || "";
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
-
-
-    if (!isLoggedIn) {
-        alert("Debe iniciar sesión para acceder al perfil.");
-        window.location.href = "login.html";  // Redirige a la página de login
+function verificarLogin() {
+    const username = localStorage.getItem('session');
+    if (!username) {
+        window.location.href = "login.html";
     } else {
-        document.getElementById("email").value = emailLogin;  // Cargar email del login
+        const emailInput = document.getElementById('email');
+        emailInput.value = username;
     }
-});
-
-
-// Cambiar la foto de perfil
+}
+window.onload = function () {
+    if (window.location.pathname.includes("my-profile.html")) {
+        verificarLogin();
+    }
+};
 function cambiarFotoPerfil(event) {
     const file = event.target.files[0];
     if (file) {
@@ -24,34 +22,37 @@ function cambiarFotoPerfil(event) {
         reader.readAsDataURL(file);
     }
 }
-
-
-// Guardar cambios en almacenamiento local
 function guardarCambios() {
     const nombre = document.getElementById("nombre").value;
     const apellido = document.getElementById("apellido").value;
     const email = document.getElementById("email").value;
 
-
-    // Validar que los campos obligatorios estén completos
     if (!nombre || !apellido || !email) {
         document.getElementById("errorMsg").style.display = "block";
         return;
     }
 
-
-    // Guardar datos en localStorage
     localStorage.setItem("nombre", nombre);
     localStorage.setItem("segundoNombre", document.getElementById("segundoNombre").value);
     localStorage.setItem("apellido", apellido);
     localStorage.setItem("segundoApellido", document.getElementById("segundoApellido").value);
     localStorage.setItem("telefono", document.getElementById("telefono").value);
 
-
     document.getElementById("errorMsg").style.display = "none";
     alert("Cambios guardados correctamente.");
 }
 
+const body = document.body;
+/*Definicion de modo switch*/ 
+const modeSwitch = document.getElementById('mode-switch');
 
-
-
+/* Verificación del almacenamiento local:*/
+if (localStorage.getItem('nightMode') === 'true') {
+  body.classList.add('night-mode');
+  modeSwitch.checked = true;
+}
+/*Escucha de cambios en el interruptor */
+modeSwitch.addEventListener('change', () => {
+  body.classList.toggle('night-mode', modeSwitch.checked);
+  localStorage.setItem('nightMode', modeSwitch.checked);
+});
