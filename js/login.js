@@ -4,9 +4,14 @@ document.getElementById('registrationForm').addEventListener('submit', function 
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
 
-  if (username && password) {
+  // Expresión regular para validar el correo electrónico
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (emailPattern.test(username) && password) {
     localStorage.setItem('session', username);
     window.location.href = 'index.html';
+  } else {
+    alert('Por favor, introduce un correo electrónico válido.');
   }
 });
 const body = document.body;
