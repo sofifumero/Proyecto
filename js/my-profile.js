@@ -10,16 +10,27 @@ function verificarLogin() {
 window.onload = function () {
     if (window.location.pathname.includes("my-profile.html")) {
         verificarLogin();
+        cargarFotoPerfil(); // Cargar la foto de perfil al cargar la página
     }
 };
+
 function cambiarFotoPerfil(event) {
     const file = event.target.files[0];
     if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
-            document.getElementById('fotoPreview').style.backgroundImage = `url(${e.target.result})`;
+            const fotoPerfil = e.target.result;
+            document.getElementById('fotoPreview').style.backgroundImage = `url(${fotoPerfil})`;
+            localStorage.setItem('fotoPerfil', fotoPerfil); // Almacenar la imagen en localStorage
         };
         reader.readAsDataURL(file);
+    }
+}
+
+function cargarFotoPerfil() {
+    const fotoPerfil = localStorage.getItem('fotoPerfil');
+    if (fotoPerfil) {
+        document.getElementById('fotoPreview').style.backgroundImage = `url(${fotoPerfil})`; // Mostrar la imagen almacenada
     }
 }
 function guardarCambios() {
