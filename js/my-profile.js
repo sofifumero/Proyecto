@@ -12,20 +12,35 @@ window.onload = function () {
         verificarLogin();
     }
 };
+profilePicInput.addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            fotoPreview.src = e.target.result;
+            localStorage.setItem('fotoPreview', e.target.result);
+        };
+        reader.readAsDataURL(file);
+    }
+});
 function cambiarFotoPerfil(event) {
     const file = event.target.files[0];
     if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
             document.getElementById('fotoPreview').style.backgroundImage = `url(${e.target.result})`;
+            
         };
         reader.readAsDataURL(file);
     }
 }
+
+
 function guardarCambios() {
     const nombre = document.getElementById("nombre").value;
     const apellido = document.getElementById("apellido").value;
     const email = document.getElementById("email").value;
+    const imagen = document.getElementById("fotoPreview");
 
     if (!nombre || !apellido || !email) {
         document.getElementById("errorMsg").style.display = "block";
@@ -37,6 +52,7 @@ function guardarCambios() {
     localStorage.setItem("apellido", apellido);
     localStorage.setItem("segundoApellido", document.getElementById("segundoApellido").value);
     localStorage.setItem("telefono", document.getElementById("telefono").value);
+    localStorage.setItem("imagen", document.getElementById("fotoPreview"));
 
     document.getElementById("errorMsg").style.display = "none";
     alert("Cambios guardados correctamente.");
