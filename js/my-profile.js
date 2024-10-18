@@ -33,10 +33,12 @@ function cargarFotoPerfil() {
         document.getElementById('fotoPreview').style.backgroundImage = `url(${fotoPerfil})`; // Mostrar la imagen almacenada
     }
 }
+
 function guardarCambios() {
     const nombre = document.getElementById("nombre").value;
     const apellido = document.getElementById("apellido").value;
     const email = document.getElementById("email").value;
+    const imagen = document.getElementById("fotoPreview");
 
     if (!nombre || !apellido || !email) {
         document.getElementById("errorMsg").style.display = "block";
@@ -48,6 +50,7 @@ function guardarCambios() {
     localStorage.setItem("apellido", apellido);
     localStorage.setItem("segundoApellido", document.getElementById("segundoApellido").value);
     localStorage.setItem("telefono", document.getElementById("telefono").value);
+    localStorage.setItem("imagen", document.getElementById("fotoPreview"));
 
     document.getElementById("errorMsg").style.display = "none";
     alert("Cambios guardados correctamente.");
