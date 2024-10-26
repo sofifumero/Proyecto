@@ -15,64 +15,109 @@ modeSwitch.addEventListener('change', () => {
   localStorage.setItem('nightMode', modeSwitch.checked);
 });
 
-function showProductInfo(prod) {
-    //Cargo la informacion de producto
-    let htmlContent = "";
-        let product = prod;
-     htmlContent = `
-          <div>
-            <h2 class="catprod">${prod.category}</h2>
+function showProductInfo(prod) {  
+  // Cargo la información de producto  
+  let product = prod;
+  let htmlContent = `      
+      <div>
+          <h2 class="catprod">${prod.category}</h2>
+      </div>      
+      <div class="contenedor-de-producto">
+          <div class="row">
+              <div class="col-2" style="width: 50%; float: left;">
+                  <img src="${prod.images[0]}" width="100%" id="ProductImg" class="imgprin">
+                  <div class="small-img-row">
+                      ${prod.images.map((img, index) => `
+                        <div class="small-img-col">
+                            <img src="${img}" width="100%" class="small-img">
+                        </div>
+                      `).join('')}
+                  </div>
+              </div>
+              <div class="col-2" style="width: 50%; float: left;">
+                  <div class="contenedor-info">
+                      <h1 class="nameprod">${prod.name}</h1>
+                      <h3 class="priceprod">Precio ${prod.currency} ${product.cost}</h3>
+                      <h4 class="souldprod">Cantidad de vendidos: ${prod.soldCount}</h4>
+                      <h4 class="descprod">Descripción</h4>
+                      <p class="descprod">${prod.description}</p>
+                      <input type="button" value="Comprar Ahora" class="botoncomprar" id="buy-now-button">
+                      <input type="button" value="Agregar al Carrito" class="botoncomprar" id="add-to-cart-button">
+                      <div id="notification" class="notification" style="display: none;">
+                          <i class="fas fa-shopping-cart"></i>
+                          <span id="notification-message"></span>
+                      </div>
+                  </div>
+              </div>
           </div>
-          <div class="contenedor-de-producto>
-            <div class="row">
-                <div class="col-2" style="width: 50%; float: left;">
-                     <img src="${prod.images[0]}" width="100%"  id="ProductImg" class="imgprin">
-                     <div class="small-img-row"> 
-                        <div class="small-img-col">
-                            <img src="${prod.images[0]}" width="100%" class="small-img">
-                        </div>
-                        <div class="small-img-col">
-                            <img src="${prod.images[1]}" width="100%" class="small-img">
-                        </div>
-                        <div class="small-img-col">
-                            <img src="${prod.images[2]}" width="100%" class="small-img">
-                        </div>
-                        <div class="small-img-col">
-                            <img src="${prod.images[3]}" width="100%" class="small-img">
-                        </div>
-                     </div>
-                </div>
-                <div class="col-2" style="width: 50%; float: left;"> 
-                    <div class="contenedor-info">
-                        <h1 class="nameprod">${prod.name}</h1>
-                        <h3 class="priceprod">Precio ${prod.currency} ${product.cost}</h3>
-                        <h4 class="souldprod">Cantidad de vendidos: ${prod.soldCount}</h4>
-                        <h4 class="descprod">Descripcion</h4>
-                        <p class="descprod">${prod.description}</p>
-                        <input type="button" value="Comprar" class="botoncomprar">
-                    </div> 
-                </div>
-            </div>
-          </div>
+      </div>`;
   
-        `
+  document.getElementById("product_info").innerHTML = htmlContent;
 
-    document.getElementById("product_info").innerHTML = htmlContent;
-    let ProductImg = document.getElementById("ProductImg");//Imagen principal
-    let SmallImg = document.getElementsByClassName("small-img");//imagenes pequeñas
-    SmallImg[0].onclick  = function(){
-      ProductImg.src = SmallImg[0].src;
-    }
-    SmallImg[1].onclick  = function(){
-      ProductImg.src = SmallImg[1].src;
-    }
-    SmallImg[2].onclick = function(){
-      ProductImg.src = SmallImg[2].src;
-    }
-    SmallImg[3].onclick  = function(){
-      ProductImg.src = SmallImg[3].src;
-    }
-    
+  // Lógica para cambiar la imagen principal
+  const ProductImg = document.getElementById("ProductImg");
+  const SmallImg = document.getElementsByClassName("small-img");
+  for (let i = 0; i < SmallImg.length; i++) {
+      SmallImg[i].onclick = function() {
+          ProductImg.src = SmallImg[i].src;
+      };
+  }
+
+  // Función para agregar producto al carrito
+  function addToCart(producto, navigateToCart = false) {
+      const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+      cartItems.push(producto);
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      
+      if (navigateToCart) {
+          window.location.href = 'cart.html';
+      } else {
+          showNotification('Producto agregado al carrito. ¡Puedes seguir comprando!');
+      }
+  }
+
+  // Función para mostrar notificación
+  function showNotification(message) {
+      const notification = document.getElementById("notification");
+      const notificationMessage = document.getElementById("notification-message");
+      notificationMessage.innerHTML = message;
+      notification.style.display = 'flex'; // Asegúrate de que el contenedor sea visible
+      notification.style.opacity = 1;
+
+      // Ocultar notificación después de 3 segundos
+      setTimeout(() => {
+          notification.style.opacity = 0;
+          setTimeout(() => {
+              notification.style.display = 'none';
+          }, 500); // Espera a que la transición de opacidad termine
+      }, 3000); // 3 segundos
+  }
+
+  // Lógica para el botón "Comprar Ahora"
+  document.getElementById("buy-now-button").addEventListener('click', function() {
+      const producto = {
+          id: product.id,
+          name: product.name,
+          price: product.cost,
+          currency: product.currency,
+          image: prod.images[0],
+          quantity: 1
+      };
+      addToCart(producto, true);
+  });
+
+  // Lógica para el botón "Agregar al Carrito"
+  document.getElementById("add-to-cart-button").addEventListener('click', function() {
+      const producto = {
+          id: product.id,
+          name: product.name,
+          price: product.cost,
+          currency: product.currency,
+          image: prod.images[0],
+          quantity: 1
+      };
+      addToCart(producto);
+  });
 }
 
 function showProductComments() {
