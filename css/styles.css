@@ -948,6 +948,10 @@ input:checked + .slider:before {
   align-items: center;
   margin-top: 20px; /* Espacio superior opcional */
 }
+
+.w-min-small {
+  min-width: 200px;
+}
 .notification {
   background-color: #ffdca7; /* Color de fondo */
   color: #f09100; /* Color del texto */
