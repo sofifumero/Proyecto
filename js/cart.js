@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
   carrito.innerHTML = "";
   mensaje.innerHTML = "";
 
+  contadorProductos();
+
   if (cartItems.lenght === 0) {
     mensaje.textContent = "No hay productos en el carrito!";
   } else {
@@ -35,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         </div>   
                         <span class=" text-end ">$${item.price.toFixed(2)}
                         </span> 
-                        <button onclick="borrarElemento">🗑️</button>   
+                        <button class="btn btn" onclick="borrarElemento(${index})">🗑️</button>  
                     </div>    
                  `;
               })
@@ -61,7 +63,32 @@ function updateQuantity(index, change) {
   location.reload();
 }
 
-function borrarElemento (index){
+function borrarElemento(index) {
   const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-  const item = cartItems[index];
+  
+  // Elimina el elemento del carrito
+  cartItems.splice(index, 1);
+
+  // Guarda los cambios en localStorage
+  localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  
+  // Vuelve a cargar el carrito en la vista
+  location.reload(); // Recarga la página para mostrar los cambios
+}
+
+function contadorProductos() {
+  // Obtiene los artículos del carrito desde el localStorage. Si no hay, se asigna un arreglo vacío.
+  const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+  
+  // Calcula el total de productos en el carrito sumando la cantidad de cada artículo.
+  const totalProductos = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+
+  // Busca el elemento de la interfaz de usuario donde se mostrará la notificación del total de productos.
+  const notificacion = document.getElementById("notificacion");
+  
+  // Si el elemento de notificación existe en el DOM, actualiza su contenido y visibilidad.
+  if (notificacion) {
+    // Establece el texto de la notificación con el total de productos.
+    notificacion.textContent = totalProductos;
+  }
 }
