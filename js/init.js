@@ -49,14 +49,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const btnCerrarSesion = document.getElementById('btn-cerrar-sesion');
     btnCerrarSesion.onclick = () => {
       localStorage.setItem('session', '');
+      localStorage.setItem('nightMode', 'false');
       window.location.href = 'login.html';
     };
+
+    const myProfileDataJson = localStorage.getItem('MyProfileData-' + session);
+    if (myProfileDataJson && JSON.parse(myProfileDataJson).nightMode) {
+      body.classList.add('night-mode');
+    }
 
     const usuarioElem = document.getElementById("app-nav-bar-usuario")
     if (usuarioElem) {
       usuarioElem.innerText = session;
     }
   }
-
-
 });

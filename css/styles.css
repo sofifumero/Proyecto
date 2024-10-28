@@ -510,6 +510,7 @@ textarea{
     }
   .botoncomprar{
     margin-left: 20%;
+     width: 50%;
   }
   .box{
     width: 90%;
@@ -951,6 +952,49 @@ input:checked + .slider:before {
 .w-min-small {
   min-width: 200px;
 }
+.notification {
+  background-color: #ffdca7; /* Color de fondo */
+  color: #f09100; /* Color del texto */
+  padding: 5px 10px; /* Espaciado reducido */
+  border-radius: 5px; /* Bordes redondeados */
+  margin-top: 10px; /* Margen superior para separarlo del botón */
+  display: flex;
+  justify-content: center; /* Centra el contenido */
+  align-items: center;
+  transition: opacity 0.5s ease; /* Transición suave */
+  opacity: 0; /* Inicialmente invisible */
+  font-size: 0.875rem; /* Tamaño de fuente más pequeño */
+}
 
+.notification i {
+  margin-right: 5px; /* Espacio entre el ícono y el texto */
+}
+.night-mode .notification{
+  background-color:#93beff;
+  color: #0d6efd;
+}
+.night-mode .notification i{
+  color: #0d6efd;
+}
+#add-to-cart-button{
+  background-color:#ffdca7;
+  color: #f09100;
+  border: #f7b758;
+}
+.night-mode #add-to-cart-button{
+  background-color:#93beff;
+  color: #0d6efd;
+  border: #0d6efd;
+}
 
-  
+#carrito {
+  width: 90%; /* Asegura que cada caja de comentario ocupe el 100% del ancho */
+  margin-bottom: 15px; /* Espacio entre comentarios */
+  padding: 15px; /* Padding interno para las cajas */
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Agrega sombra para mayor separación */
+  border-radius: 5px; /* Bordes redondeados para un mejor aspecto */
+  background-color: #ffffff;
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+  margin-left: 1rem;
+}
+
