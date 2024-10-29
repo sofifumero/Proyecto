@@ -46,6 +46,8 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!session) {
     window.location.href = 'login.html';
   } else {
+    contadorProductos();
+
     const btnCerrarSesion = document.getElementById('btn-cerrar-sesion');
     btnCerrarSesion.onclick = () => {
       localStorage.setItem('session', '');
@@ -64,3 +66,29 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 });
+
+function contadorProductos() {
+  // Obtiene los artículos del carrito desde el localStorage. Si no hay, se asigna un arreglo vacío.
+  const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+  // Calcula el total de productos en el carrito sumando la cantidad de cada artículo.
+  const totalProductos = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+
+  // Busca el elemento de la interfaz de usuario donde se mostrará la notificación del total de productos.
+  const notificacion = document.getElementById("notificacion");
+  const userNameBadge = document.getElementById("app-user-name-badge");
+
+
+  // Si el elemento de notificación existe en el DOM, actualiza su contenido y visibilidad.
+  if (notificacion) {
+    // Establece el texto de la notificación con el total de productos.
+    notificacion.textContent = totalProductos;
+  }
+
+  if (userNameBadge && totalProductos > 0) {
+    userNameBadge.textContent = totalProductos;
+    userNameBadge.classList.remove("d-none");
+  } else {
+    userNameBadge.classList.add("d-none");
+  }
+}

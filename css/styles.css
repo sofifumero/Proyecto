@@ -998,3 +998,6 @@ input:checked + .slider:before {
   margin-left: 1rem;
 }
 
+.w-min-xs {
+  min-width: 120px;
+}

@@ -1,3 +1,11 @@
+const FIXERIO_API_KEY = '9363d463ad31e9b3da99a180abbc2b1d';
+const FIXERIO_TARGET_CURRENCY = 'USD,UYU';
+const DEFAULT_USD_EXCHANGE = 40;
+const FIXERIO_URL = `http://data.fixer.io/api/latest?access_key=${FIXERIO_API_KEY}&symbols=${FIXERIO_TARGET_CURRENCY}`;
+
+
+
+
 let currentProduct = [];
 let currentComment = [];
 const body = document.body;
@@ -76,7 +84,7 @@ function showProductInfo(prod) {
       }
   }*/
 
-      function addToCart(producto, navigateToCart = false) {
+      async function addToCart(producto, navigateToCart = false) {
         const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
         
         // Verifica si el producto ya está en el carrito
@@ -87,11 +95,16 @@ function showProductInfo(prod) {
             cartItems[existingItemIndex].quantity += producto.quantity;
         } else {
             // Si no existe, añade el nuevo producto
+            if (producto.currency === "USD") {
+              producto.price = await obtenerPrecioProductoEnPesos(producto.price);
+            }
             cartItems.push(producto);
         }
         
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
-    
+
+        contadorProductos();
+
         if (navigateToCart) {
             window.location.href = 'cart.html';
         } else {
@@ -303,4 +316,28 @@ function generateStars(rating) {
       }
   }
   return starsHTML;
+}
+
+
+async function obtenerPrecioProductoEnPesos(precioEnDolares) {
+  try {
+    const response = await fetch(FIXERIO_URL);
+    const data = await response.json();
+
+    if (data.success) {
+      const rateEurToUsd = data.rates['USD'];
+      const rateEurToUyu = data.rates['UYU'];
+
+      // Calculate USD to UYU
+      const rateUsdToUyu = rateEurToUyu / rateEurToUsd;
+      console.log(`FIXER.IO RESPONSE - 1 USD es igual a ${rateUsdToUyu} UYU`);
+      return precioEnDolares * rateUsdToUyu;
+    } else {
+      console.error('Error obteniendo datos de Fixer.io', data);
+      return precioEnDolares * DEFAULT_USD_EXCHANGE;
+    }
+  } catch (error) {
+    console.error('Error obteniendo datos de Fixer.io:', error);
+    return precioEnDolares * DEFAULT_USD_EXCHANGE;
+  }
 }
