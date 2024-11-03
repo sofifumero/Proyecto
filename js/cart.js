@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <input size="1" type="text"  value="${item.quantity}" readonly>
                         <button class="btn btn-outline-secondary " onclick="updateQuantity(${index}, 1)">+</button>
                     </div>   
-                    <span class="text-end d-flex align-items-center w-min-xs">UYU $${item.price.toFixed(2)}</span>
+                    <span class="text-end d-flex align-items-center w-min-xs text-dark">UYU $${item.price.toFixed(2)}</span>
                   </div>
                   <button class="btn btn" onclick="borrarElemento(${index})">🗑️</button>
               </div>

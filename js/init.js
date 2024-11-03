@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const myProfileDataJson = localStorage.getItem('MyProfileData-' + session);
     if (myProfileDataJson && JSON.parse(myProfileDataJson).nightMode) {
-      body.classList.add('night-mode');
+      document.body.classList.add('night-mode');
     }
 
     const usuarioElem = document.getElementById("app-nav-bar-usuario")

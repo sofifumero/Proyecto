@@ -649,73 +649,88 @@ input:checked + .slider:before {
 
 .night-mode  nav{
   background-color: #fff;
+  transition: all 0.3s ease;
 }
 
 .night-mode {
   background-color: #2c2c2c;
+  transition: all 0.3s ease;
 }
 
 .night-mode  h1 {
   color: #0d6efd;
   text-shadow: blue 0.1em 0.1em 0.2em;
-   
+  transition: all 0.3s ease;
 }
 .night-mode  h2 {
   color: #0d6efd;
   text-shadow: blue 0.1em 0.1em 0.2em;
-
+  transition: all 0.3s ease;
 }
 .night-mode  h3 {
-  color:#fff
+  color:#fff;
+  transition: all 0.3s ease;
 }
 .night-mode  h4 {
-  color:#fff
+  color:#fff;
+  transition: all 0.3s ease;
 }
 .night-mode  p {
-  color:#fff
+  color:#fff;
+  transition: all 0.3s ease;
 }
 .night-mode  .box{
   background-color: #4b4b4b;
+  transition: all 0.3s ease;
 }
 .night-mode  .box-comment{
   background-color: #4b4b4b;
+  transition: all 0.3s ease;
 }
 .night-mode  .box-comment label{
   color: #fff;
+  transition: all 0.3s ease;
 }
 .night-mode  .box-comment textarea{
   background-color: #979797;
+  transition: all 0.3s ease;
 }
 .night-mode  .box-comment input{
   background-color: #979797;
+  transition: all 0.3s ease;
 }
 
 .night-mode  .botoncomprar{
   background-color: #0d6efd;
   color: black;
- 
+  transition: all 0.3s ease;
 }
 .night-mode  #env{
   background-color: #0d6efd ;
   color: black;
   border: black 2px;
   border-radius: 5px;
+  transition: all 0.3s ease;
 }
 
 .night-mode  .card-body{
   background-color: #4b4b4b;
+  transition: all 0.3s ease;
 }
 .night-mode  h5.card-title{
   color: #fff;
+  transition: all 0.3s ease;
 }
 
 
 .night-mode .calificacion{
   color: #0d6efd;
+  transition: all 0.3s ease;
 }
 .night-mode #estrellas:not(:checked)>label:hover,
 #estrellas:not(:checked)>label:hover~label{
   color: #0d6efd;
+  transition: all 0.3s ease;
 }
 .night-mode #estrellas>input:checked+label:hover,
 #estrellas>input:checked+label:hover~label,
@@ -723,13 +738,16 @@ input:checked + .slider:before {
 #estrellas>input:checked+label:hover~label,
 #estrellas>label:hover~input:checked~label{
   color: #0d6efd;
+  transition: all 0.3s ease;
 }
 .night-mode #estrellas>input:checked~label{
   color: #0d6efd;
+  transition: all 0.3s ease;
 }
 
 .night-mode .album.py-5.bg-light {
   background-color: #2c2c2c !important;
+  transition: all 0.3s ease;
 }
 
 
@@ -739,10 +757,12 @@ input:checked + .slider:before {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  transition: all 0.3s ease;
 }
 
 .night-mode #autos, .night-mode #juguetes, .night-mode #muebles {
   background-color: #4b4b4b;
+  transition: all 0.3s ease;
 }
 
 #autos, #juguetes, #muebles {
@@ -753,66 +773,84 @@ input:checked + .slider:before {
   background-color: #4b4b4b !important;
   color: #fff;
   border: #2c2c2c;
+  transition: all 0.3s ease;
 }
 
 
 .night-mode .list-group-item {
   background-color: #4b4b4b;
+  transition: all 0.3s ease;
 }
 
 .night-mode .form-control {
   background-color: #4b4b4b;
+  transition: all 0.3s ease;
 }
 
 .night-mode label {
   color: #fff;
+  transition: all 0.3s ease;
 }
 
 .night-mode .form-select {
   background-color: #4b4b4b;
+  transition: all 0.3s ease;
 }
 
 .night-mode h6.my-0 {
   color: #fff;
+  transition: all 0.3s ease;
 }
 
 .night-mode span {
   color: #fff;
+  transition: all 0.3s ease;
 }
 
 .night-mode h5.mb-3 {
   color: #fff;
+  transition: all 0.3s ease;
 }
 
 .night-mode #file-upload {
   background-color: #4b4b4b;
+  transition: all 0.3s ease;
 }
 .night-mode .containerProfile{
   background-color: #3d3d3d;
+  transition: all 0.3s ease;
 }
 .night-mode .input-perfil{
   background-color: #4b4b4b;
+  transition: all 0.3s ease;
 }
 .night-mode .boton-perfil{
   background-color: #0d6efd;
+  transition: all 0.3s ease;
 }
 .night-mode .boton-perfil:hover{
   background-color: #0d6efd;
+  transition: all 0.3s ease;
 }
 .night-mode .container-login{
   background-color: #3d3d3d;
+  transition: all 0.3s ease;
 }
 .night-mode .input-login{
   background-color: #4b4b4b;
+  transition: all 0.3s ease;
 }
 .night-mode .boton-filtro{
   background-color: #0d6efd;
+  transition: all 0.3s ease;
 }
 .night-mode .boton-filtro:hover{
   background-color: #0d6efd;
+  transition: all 0.3s ease;
 }
 .night-mode .form-group-login input[type="submit"] {
   background-color: #0d6efd;
+  transition: all 0.3s ease;
 }
 
 /*perfil*/
@@ -972,9 +1010,11 @@ input:checked + .slider:before {
 .night-mode .notification{
   background-color:#93beff;
   color: #0d6efd;
+  transition: all 0.3s ease;
 }
 .night-mode .notification i{
   color: #0d6efd;
+  transition: all 0.3s ease;
 }
 #add-to-cart-button{
   background-color:#ffdca7;
@@ -985,6 +1025,7 @@ input:checked + .slider:before {
   background-color:#93beff;
   color: #0d6efd;
   border: #0d6efd;
+  transition: all 0.3s ease;
 }
 
 #carrito {
