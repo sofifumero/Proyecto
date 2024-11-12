@@ -14,6 +14,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/dropzone.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
   </head>
 
   <body>
@@ -31,7 +32,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav w-100 justify-content-between">
+          <ul class="navbar-nav w-100 justify-content-between pt-2">
             <li class="nav-item">
               <a class="nav-link" href="index.html">Inicio</a>
             </li>
@@ -43,11 +44,22 @@
             </li>
             <li class="nav-item">
               <div class="dropdown">
+                <span class="d-none position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="app-user-name-badge">
+                  0
+                  <span class="visually-hidden">unread messages</span>
+                </span>
                 <a class="nav-link dropdown-toggle" href="#" id="app-nav-bar-usuario" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Nombre de Usuario
                 </a>
-                <ul class="dropdown-menu bg-dark w-100" aria-labelledby="userDropdown">
-                  <li class="ps-3"><a class="dropdown-item bg-dark text-white" href="cart.html"><i class="bi bi-cart me-2 text-white"></i> Mi Carrito</a></li>
+                <ul class="dropdown-menu bg-dark w-100 w-min-small" aria-labelledby="userDropdown">
+                  <li class="ps-3">
+                    <a class="dropdown-item bg-dark text-white" href="cart.html"><i class="bi bi-cart me-2 text-white"></i> Mi Carrito
+                      <button type="button" class="btn btn-dark position-relative">
+                        <span id="notificacion" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                          0
+                        </span>
+                      </button></a>
+                  </li>
                   <li class="ps-3"><a class="dropdown-item bg-dark text-white" href="my-profile.html"><i class="bi bi-person me-2 text-white"></i> Mi Perfil</a></li>
                   <li class="ps-3" id="btn-cerrar-sesion"><a class="dropdown-item bg-dark text-white" href="#opcion3"><i class="bi bi-box-arrow-right me-2 text-white"></i> Cerrar Sesión</a></li>
                   <label class="switch" style="display: none;">
