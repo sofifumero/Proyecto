@@ -9,7 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
   if (cartItems.lenght === 0) {
     mensaje.textContent = "No hay productos en el carrito!";
   } else {
-    let total = 0;
+    const subtotal = calculateSubtotal(cartItems);  // Calcula el subtotal
+    const shippingCost = getShippingCost();  // Obtiene el costo de envío
+    const total = subtotal + shippingCost;
     carrito.innerHTML = `
         <div class= "carrito-head bg-dark text-white p-3 d-flex align-items-center">
         <h1 class="m-0 me-3 mb-2">🛒</h1>
@@ -17,7 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
         <div class="p-3 border">
             ${cartItems.map((item, index) => {
-      total += item.price * item.quantity;
       return `
               <div class= "producto d-flex align-items-center justify-content-between mb-3 gap-3">
                   <img src="${item.image}" alt= "${item.name}" width="120" class="me-2">
@@ -38,16 +39,16 @@ document.addEventListener("DOMContentLoaded", () => {
         .join("")}
                 <div class=" d-flex justify-content-between border-top pt-3">
                <strong>Sub total</strong>
-               <strong class="me-5 pe-1">UYU $${total.toFixed(2)}</strong>
+               <strong class="me-5 pe-1" id="monto-subtotal">UYU $${subtotal.toFixed(2)}</strong>
                </div>
-               <div class=" d-flex justify-content-between border-top pt-3">
-               <strong>Costo de envío</strong>            
-               <strong class="me-5 pe-1">UYU $</strong>
-               </div>
-               <div class=" d-flex justify-content-between border-top pt-3">
-               <strong>Total</strong>
-               <strong class="me-5 pe-1">UYU $</strong>
-               </div>
+              <div class="d-flex justify-content-between border-top pt-3">
+              <strong>Costo de envío</strong>
+              <strong class="me-5 pe-1 shipping-cost" id="monto-shipping-cost">UYU $${shippingCost.toFixed(2)}</strong>
+              </div>
+              <div class="d-flex justify-content-between border-top pt-3">
+              <strong>Total</strong>
+              <strong class="me-5 pe-1 total" id="monto-total">UYU $${total.toFixed(2)}</strong>
+              </div>
         </div>           
         `;
   }
@@ -77,3 +78,45 @@ function borrarElemento(index) {
   // Vuelve a cargar el carrito en la vista
   location.reload(); // Recarga la página para mostrar los cambios
 }
+
+
+// Función para calcular el subtotal
+function calculateSubtotal(items) {
+    return items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+}
+
+// Función para obtener el costo de envío según el tipo seleccionado
+function getShippingCost() {
+  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const shippingRadios = document.querySelectorAll('input[name="shipping"]:checked');
+    let shippingPercentage = 0;
+
+    shippingRadios.forEach(radio => {
+        shippingPercentage = parseFloat(radio.value);  // El valor es el porcentaje
+    });
+
+    const subtotal = calculateSubtotal(cartItems);
+    return subtotal * (shippingPercentage / 100);
+}
+
+// Función para actualizar los costos (subtotal, envío y total)
+function updateCosts() {
+  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const subtotal = calculateSubtotal(cartItems);  // Calcula el subtotal
+    const shippingCost = getShippingCost();  // Obtiene el costo de envío
+    const total = subtotal + shippingCost;  // Total = Subtotal + Envío
+
+    // Actualiza los valores en el HTML
+    document.getElementById("monto-subtotal").innerText = `UYU $${subtotal.toFixed(2)}`;
+    document.getElementById("monto-shipping-cost").innerText = `UYU $${shippingCost.toFixed(2)}`;
+    document.getElementById("monto-total").innerText = `UYU $${total.toFixed(2)}`;
+}
+
+// Escuchar cambios en el tipo de envío
+const shippingRadios = document.querySelectorAll('input[name="shipping"]');
+shippingRadios.forEach(radio => {
+    radio.addEventListener('change', updateCosts);
+});
+
+// Llamada inicial para mostrar los costos cuando la página se carga
+updateCosts();
