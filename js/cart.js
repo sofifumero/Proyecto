@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+  manejarEventoFinalizarCompra();
+
   const carrito = document.getElementById("carrito");
   const mensaje = document.getElementById("mensaje");
   const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
@@ -35,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
               </div>
             `;
     })
-    // se puede completar la parte de costo de envío y total como está hecho en sub total
+        // se puede completar la parte de costo de envío y total como está hecho en sub total
         .join("")}
                 <div class=" d-flex justify-content-between border-top pt-3">
                <strong>Sub total</strong>
@@ -52,6 +54,8 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>           
         `;
   }
+
+  updateCosts();
 });
 
 function updateQuantity(index, change) {
@@ -82,41 +86,187 @@ function borrarElemento(index) {
 
 // Función para calcular el subtotal
 function calculateSubtotal(items) {
-    return items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  return items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 }
 
 // Función para obtener el costo de envío según el tipo seleccionado
 function getShippingCost() {
   const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-    const shippingRadios = document.querySelectorAll('input[name="shipping"]:checked');
-    let shippingPercentage = 0;
+  const shippingRadios = document.querySelectorAll('input[name="shipping"]:checked');
+  let shippingPercentage = 0;
 
-    shippingRadios.forEach(radio => {
-        shippingPercentage = parseFloat(radio.value);  // El valor es el porcentaje
-    });
+  shippingRadios.forEach(radio => {
+    shippingPercentage = parseFloat(radio.value);  // El valor es el porcentaje
+  });
 
-    const subtotal = calculateSubtotal(cartItems);
-    return subtotal * (shippingPercentage / 100);
+  const subtotal = calculateSubtotal(cartItems);
+  return subtotal * (shippingPercentage / 100);
 }
 
 // Función para actualizar los costos (subtotal, envío y total)
 function updateCosts() {
   const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-    const subtotal = calculateSubtotal(cartItems);  // Calcula el subtotal
-    const shippingCost = getShippingCost();  // Obtiene el costo de envío
-    const total = subtotal + shippingCost;  // Total = Subtotal + Envío
+  const subtotal = calculateSubtotal(cartItems);  // Calcula el subtotal
+  const shippingCost = getShippingCost();  // Obtiene el costo de envío
+  const total = subtotal + shippingCost;  // Total = Subtotal + Envío
 
-    // Actualiza los valores en el HTML
-    document.getElementById("monto-subtotal").innerText = `UYU $${subtotal.toFixed(2)}`;
-    document.getElementById("monto-shipping-cost").innerText = `UYU $${shippingCost.toFixed(2)}`;
-    document.getElementById("monto-total").innerText = `UYU $${total.toFixed(2)}`;
+  // Actualiza los valores en el HTML
+  document.getElementById("monto-subtotal").innerText = `UYU $${subtotal.toFixed(2)}`;
+  document.getElementById("monto-shipping-cost").innerText = `UYU $${shippingCost.toFixed(2)}`;
+  document.getElementById("monto-total").innerText = `UYU $${total.toFixed(2)}`;
 }
 
 // Escuchar cambios en el tipo de envío
 const shippingRadios = document.querySelectorAll('input[name="shipping"]');
 shippingRadios.forEach(radio => {
-    radio.addEventListener('change', updateCosts);
+  radio.addEventListener('change', updateCosts);
 });
 
-// Llamada inicial para mostrar los costos cuando la página se carga
-updateCosts();
+function obtenerCamposVacios() {
+  const resultados = [];
+  const camposIds = ["campo-departamento", "campo-localidad", "campo-calle", "campo-numero", "campo-esquina"];
+  camposIds.forEach(id => {
+    const valor = document.getElementById(id).value;
+    if (!valor) resultados.push(id);
+  });
+  return resultados;
+}
+
+function manejarEventoFinalizarCompra() {
+  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  const botonFinalizarCompra = document.getElementById("finalizar-compra-btn");
+
+  botonFinalizarCompra.addEventListener("click", () => {
+    const camposVacios = obtenerCamposVacios();
+
+    if (camposVacios.length > 0) {
+      manejarCamposVaciosDireccion(camposVacios);
+      return;
+    }
+
+    const shippingRadiosChecked = document.querySelectorAll('input[name="shipping"]:checked');
+    if (shippingRadiosChecked.length === 0) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Debe seleccionar una forma de envío.",
+      });
+      return;
+    }
+
+    const invalidProducts = cartItems.length === 0 || (cartItems.some(item => item.quantity < 1));
+    if (invalidProducts) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "La cantidad de productos en los carrito no es válida. Asegúrate de que haya al menos un produto en el carrito.",
+      });
+      return;
+    }
+
+    const isPaymentMethodSelected = document.querySelectorAll('input[name="tarjeta"]:checked').length > 0;
+    if (!isPaymentMethodSelected) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Debes seleccionar un método de pago.",
+      });
+      return;
+    }
+    //TODO: Los campos para la forma de pago seleccionada no podrán estar vacíos. (Falta agregar los campos de metodo de pago)
+
+    Swal.fire({
+      icon: "success",
+      title: "Gracias por su compra",
+      text: "La compra se ha realizado correctamente.",
+    });
+  })
+}
+function manejarCamposVaciosDireccion(camposVacios) {
+  const textos = {
+    "campo-departamento": "'Departamento'",
+    "campo-localidad": "'Localidad'",
+    "campo-calle": "'Calle'",
+    "campo-numero": "'Numero'",
+    "campo-esquina": "'Esquina'"
+  };
+  let camposVaciosTexto = "";
+  camposVacios.forEach(id => {
+    const texto = textos[id];
+    camposVaciosTexto += texto + " ";
+  });
+  const alerta = camposVacios.length == 1 ? "El campo " + camposVaciosTexto + "debe ser completado para finalizar la compra." :
+    "Los campos " + camposVaciosTexto + "deben ser completados para finalizar la compra.";
+
+  Swal.fire({
+    icon: "error",
+    title: "Oops...",
+    text: alerta,
+  });
+  return;
+}
+
+
+//////// Slider /////////////
+
+
+let currentSlide = 0;
+const totalSlides = 3;
+function showSlide(n) {
+  const slides = document.querySelectorAll('.slide');
+
+  slides[currentSlide].classList.remove('active');
+  slides[currentSlide].setAttribute('hidden', true);
+
+  currentSlide = (n + totalSlides) % totalSlides;
+
+  slides[currentSlide].classList.add('active');
+  slides[currentSlide].removeAttribute('hidden');
+
+  updateCounter();
+}
+
+function nextSlide() {
+  showSlide(currentSlide + 1);
+}
+
+function prevSlide() {
+  showSlide(currentSlide - 1);
+}
+
+function updateCounter() {
+  const titulosContador = {
+    0: "Dirección",
+    1: "Tipo de envío",
+    2: "Método de pago",
+  };
+  document.getElementById('slideCounter').textContent = `${currentSlide + 1}/${totalSlides} ${titulosContador[currentSlide]}`;
+  // document.getElementById('slideCounter').textContent = titulosContador[currentSlide];
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  updateCounter();
+
+  const observer = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+      if (mutation.attributeName === 'class') {
+        const tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        tooltips.forEach(tooltip => new bootstrap.Tooltip(tooltip));
+        const popovers = document.querySelectorAll('[data-bs-toggle="popover"]');
+        popovers.forEach(popover => new bootstrap.Popover(popover));
+      }
+    });
+  });
+  document.querySelectorAll('.slide').forEach(function (slide) {
+    observer.observe(slide, { attributes: true });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  const demoComponents = document.querySelectorAll('.demo-section');
+  demoComponents.forEach(function (component) {
+    component.addEventListener('click', function (event) {
+      event.stopPropagation();
+    });
+  });
+});
