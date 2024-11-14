@@ -40,8 +40,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // se puede completar la parte de costo de envío y total como está hecho en sub total
         .join("")}
                 <div class=" d-flex justify-content-between border-top pt-3">
-               <strong>Sub total</strong>
-               <strong class="me-5 pe-1" id="monto-subtotal">UYU $${subtotal.toFixed(2)}</strong>
+               <strong >Sub total</strong>
+               <strong class="me-5 pe-1 " id="monto-subtotal">UYU $${subtotal.toFixed(2)}</strong>
                </div>
               <div class="d-flex justify-content-between border-top pt-3">
               <strong>Costo de envío</strong>
