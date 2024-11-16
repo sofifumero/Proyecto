@@ -173,7 +173,6 @@ function manejarEventoFinalizarCompra() {
       });
       return;
     }
-    //TODO: Los campos para la forma de pago seleccionada no podrán estar vacíos. (Falta agregar los campos de metodo de pago)
 
     Swal.fire({
       icon: "success",

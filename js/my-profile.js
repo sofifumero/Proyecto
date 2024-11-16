@@ -28,7 +28,7 @@ function cargarDatosMyProfile() {
     const userEmail = localStorage.getItem('session');
     const myProfileDataJson = localStorage.getItem('MyProfileData-' + userEmail);
     const myProfileDataFotoDePerfil = localStorage.getItem('MyProfileData-FotoDePerfil-' + userEmail);
-    
+
     if (!myProfileDataJson) {
         return;
     }
@@ -103,7 +103,7 @@ function guardarCambios() {
     localStorage.setItem('nightMode', nightMode);
     localStorage.setItem('MyProfileData-' + email, JSON.stringify(myProfileData));
     localStorage.setItem('MyProfileData-FotoDePerfil-' + email, fotoDePerfil);
-    
+
 
     document.getElementById("errorMsg").style.display = "none";
     alert("Cambios guardados correctamente.");

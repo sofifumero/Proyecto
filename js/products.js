@@ -1,5 +1,5 @@
 const body = document.body;
-/*Definicion de modo switch*/ 
+/*Definicion de modo switch*/
 const modeSwitch = document.getElementById('mode-switch');
 
 /* Verificación del almacenamiento local:*/
