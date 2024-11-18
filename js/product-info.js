@@ -223,7 +223,7 @@ function cargarProductosRelacionados(productosRelacionados) {
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function (e) {
-  getJSONData(PRODUCT_INFO_URL + localStorage.getItem('prodID') + '.json').then(function (resultObj) {
+  getJSONData(PRODUCT_INFO_URL + localStorage.getItem('prodID')).then(function (resultObj) {
     if (resultObj.status === "ok") {
       currentProduct = resultObj.data
       showProductInfo(currentProduct);
@@ -232,7 +232,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 });
 document.addEventListener("DOMContentLoaded", function (e) {
-  getJSONData(PRODUCT_INFO_COMMENTS_URL + localStorage.getItem('prodID') + '.json').then(function (resultObj) {
+  getJSONData(PRODUCT_INFO_COMMENTS_URL + localStorage.getItem('prodID')).then(function (resultObj) {
     if (resultObj.status === "ok") {
       currentComment = resultObj.data
       showProductComments(currentComment);
