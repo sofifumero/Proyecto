@@ -1,19 +1,25 @@
+// Escuchar el evento 'DOMContentLoaded' para asegurarse de que el DOM está listo
 document.addEventListener("DOMContentLoaded", () => {
-  manejarEventoFinalizarCompra();
+  manejarEventoFinalizarCompra(); // Inicializa los eventos para finalizar la compra
+
 
   const carrito = document.getElementById("carrito");
   const mensaje = document.getElementById("mensaje");
-  const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+  const cartItems = JSON.parse(localStorage.getItem("cartItems")) || []; // Recupera los ítems del carrito o inicia con un array vacío
 
-  carrito.innerHTML = "";
-  mensaje.innerHTML = "";
 
+  carrito.innerHTML = ""; // Limpia el contenido del carrito en el DOM
+  mensaje.innerHTML = ""; // Limpia los mensajes previos
+
+// Verifica si el carrito está vacío
   if (cartItems.lenght === 0) {
     mensaje.textContent = "No hay productos en el carrito!";
   } else {
     const subtotal = calculateSubtotal(cartItems);  // Calcula el subtotal
     const shippingCost = getShippingCost();  // Obtiene el costo de envío
-    const total = subtotal + shippingCost;
+    const total = subtotal + shippingCost; // Calcula el total (subtotal + envío)
+
+    //  Genera dinámicamente el contenido del carrito 
     carrito.innerHTML = `
         <div class= "carrito-head bg-dark text-white p-3 d-flex align-items-center">
         <h1 class="m-0 me-3 mb-2">🛒</h1>
@@ -33,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>   
                     <span class="text-end d-flex align-items-center w-min-xs text-dark">UYU $${item.price.toFixed(2)}</span>
                   </div>
-                  <button class="btn btn" onclick="borrarElemento(${index})">🗑️</button>
+                  <button class="btn btn" id="borrarElemento" onclick="borrarElemento(${index})">🗑️</button>
               </div>
             `;
     })
@@ -55,9 +61,10 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
   }
 
-  updateCosts();
+  updateCosts();  // Actualiza los costos mostrados en la interfaz
 });
 
+// Función para actualizar la cantidad de un producto en el carrito
 function updateQuantity(index, change) {
   const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
   const item = cartItems[index];
@@ -70,18 +77,33 @@ function updateQuantity(index, change) {
   location.reload();
 }
 
+// Eliminación de productos del carrito
+
+let productIndexToDelete = null; // Variable global para almacenar el índice del producto a eliminar
+
 function borrarElemento(index) {
-  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-
-  // Elimina el elemento del carrito
-  cartItems.splice(index, 1);
-
-  // Guarda los cambios en localStorage
-  localStorage.setItem('cartItems', JSON.stringify(cartItems));
-
-  // Vuelve a cargar el carrito en la vista
-  location.reload(); // Recarga la página para mostrar los cambios
+  // Mostrar el modal de confirmación
+  productIndexToDelete = index; // Guardamos el índice del producto que se desea eliminar
+  document.getElementById('confirmModal').style.display = 'flex';
 }
+
+// Función para confirmar la eliminación
+document.getElementById('confirmDelete').addEventListener('click', function() {
+  if (productIndexToDelete !== null) {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    // Elimina el producto seleccionado
+    cartItems.splice(productIndexToDelete, 1);
+    // Guarda los cambios en localStorage
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    // Recargar la página para actualizar el carrito
+    location.reload();
+  }
+});
+
+// Función para cancelar la eliminación
+document.getElementById('cancelDelete').addEventListener('click', function() {
+  document.getElementById('confirmModal').style.display = 'none'; // Cierra el modal
+});
 
 
 // Función para calcular el subtotal
@@ -95,12 +117,13 @@ function getShippingCost() {
   const shippingRadios = document.querySelectorAll('input[name="shipping"]:checked');
   let shippingPercentage = 0;
 
+  // Obtiene el porcentaje de envío seleccionado
   shippingRadios.forEach(radio => {
     shippingPercentage = parseFloat(radio.value);  // El valor es el porcentaje
   });
 
-  const subtotal = calculateSubtotal(cartItems);
-  return subtotal * (shippingPercentage / 100);
+  const subtotal = calculateSubtotal(cartItems); // Calcula el subtotal actual
+  return subtotal * (shippingPercentage / 100); // Calcula el costo de envío
 }
 
 // Función para actualizar los costos (subtotal, envío y total)
@@ -122,6 +145,7 @@ shippingRadios.forEach(radio => {
   radio.addEventListener('change', updateCosts);
 });
 
+// Manejo de campos vacíos en la dirección
 function obtenerCamposVacios() {
   const resultados = [];
   const camposIds = ["campo-departamento", "campo-localidad", "campo-calle", "campo-numero", "campo-esquina"];
@@ -132,6 +156,7 @@ function obtenerCamposVacios() {
   return resultados;
 }
 
+// Maneja el evento para finalizar la compra
 function manejarEventoFinalizarCompra() {
   const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
   const botonFinalizarCompra = document.getElementById("finalizar-compra-btn");
@@ -139,6 +164,7 @@ function manejarEventoFinalizarCompra() {
   botonFinalizarCompra.addEventListener("click", () => {
     const camposVacios = obtenerCamposVacios();
 
+    // Verifica si hay campos vacíos en la dirección
     if (camposVacios.length > 0) {
       manejarCamposVaciosDireccion(camposVacios);
       return;

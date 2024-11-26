@@ -1084,3 +1084,51 @@ input:checked + .slider:before {
   margin: 5px 0;
   font-weight: bold;
 } */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px; /* Ancho fijo para el modal, puede ajustarse */
+  max-width: 90%; /* Evita que sea más grande que el 90% del ancho de la pantalla */
+  text-align: center; /* Opcional: centra el texto dentro del modal */
+}
+
+h4 {
+  margin-bottom: 20px;
+}
+
+.confirm-button, .cancel-button {
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.confirm-button {
+  background-color: #4CAF50; /* Color verde para confirmar */
+  color: white;
+  border: none;
+}
+
+.cancel-button {
+  background-color: #f44336; /* Color rojo para cancelar */
+  color: white;
+  border: none;
+}
+
+/* Efecto de hover para los botones */
+.confirm-button:hover, .cancel-button:hover {
+  opacity: 0.8;
+}

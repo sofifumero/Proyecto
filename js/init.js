@@ -43,7 +43,8 @@ let getJSONData = function (url) {
 
 document.addEventListener("DOMContentLoaded", function () {
   const session = localStorage.getItem('session');
-  if (!session) {
+  const token = localStorage.getItem('token');
+  if (!session || !token) {
     window.location.href = 'login.html';
   } else {
     contadorProductos();
@@ -51,6 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const btnCerrarSesion = document.getElementById('btn-cerrar-sesion');
     btnCerrarSesion.onclick = () => {
       localStorage.setItem('session', '');
+      localStorage.setItem('token', '');
       localStorage.setItem('nightMode', 'false');
       window.location.href = 'login.html';
     };

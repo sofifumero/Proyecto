@@ -8,8 +8,40 @@ document.getElementById('registrationForm').addEventListener('submit', function 
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (emailPattern.test(username) && password) {
-    localStorage.setItem('session', username);
-    window.location.href = 'index.html';
+    const loginUrl = "http://localhost:3000/login";
+    const body = {
+      username,
+      password,
+    };
+    fetch(loginUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    })
+      .then(response => {
+        console.log(response);
+        if (response.status != 200) {
+          throw new Error("Invalid Login");
+        }
+
+        return response;
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('datalogin', data);
+        localStorage.setItem('session', username);
+        localStorage.setItem('token', data?.token);
+        window.location.href = 'index.html';
+      })
+      .catch(error => {
+        Swal.fire({
+          icon: "error",
+          title: "Error de login",
+          text: "Por favor, verifica tus credenciales.",
+        });
+      });
   } else {
     alert('Por favor, introduce un correo electrónico válido.');
   }
