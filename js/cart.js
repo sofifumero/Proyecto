@@ -308,13 +308,3 @@ document.addEventListener('DOMContentLoaded', function () {
     observer.observe(slide, { attributes: true });
   });
 });
-
-document.addEventListener('DOMContentLoaded', function () {
-  const demoComponents = document.querySelectorAll('.demo-section');
-  demoComponents.forEach(function (component) {
-    component.addEventListener('click', function (event) {
-      event.stopPropagation();
-    });
-  });
-});
-
