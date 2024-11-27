@@ -36,11 +36,11 @@ const UnauthorizedResponseBody = { title: 'Unauthorized', message: "Credenciales
 const UnauthorizedResponseInvalidTokenBody = { title: 'Unauthorized', message: "Invalid token" };
 
 const JWT_SECRET = 'claveSecreta';
-const TOKEN_EXPIRATION = '30s';
+const TOKEN_EXPIRATION = '604800s'; // una semana
 
 const PublicEndpoints = ["/login", "/signup"];
 
-const DisableTokenValidation = true;
+const DisableTokenValidation = false;
 
 ///////////////
 // APP ////////

@@ -19,8 +19,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const productContainer = document.getElementById('product-container');
   const categoria = localStorage.getItem('catID');
   const apiUrl = "http://localhost:3000/cats_products/" + categoria;
+  const token = getToken();
 
-  fetch(apiUrl)
+  fetch(apiUrl, {
+    headers: {
+      "Authorization": `Bearer ${token}`
+    }
+  })
     .then(response => response.json())
     .then(data => {
       searchProducts = data.products;

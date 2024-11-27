@@ -1,10 +1,11 @@
+/* Agrega un evento al formulario de registro para manejar su envío*/
 document.getElementById('registrationForm').addEventListener('submit', function (event) {
-  event.preventDefault();
+  event.preventDefault(); /* Evita el comportamiento predeterminado del formulario (recargar la página)*/
 
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
 
-  // Expresión regular para validar el correo electrónico
+  /* Expresión regular para validar el correo electrónico*/
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (emailPattern.test(username) && password) {
