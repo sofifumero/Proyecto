@@ -185,7 +185,7 @@ function manejarEventoFinalizarCompra() {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "La cantidad de productos en los carrito no es válida. Asegúrate de que haya al menos un produto en el carrito.",
+        text: "La cantidad de productos en los carrito no es válida. Asegúrate de que haya al menos un producto en el carrito.",
       });
       return;
     }
@@ -200,33 +200,56 @@ function manejarEventoFinalizarCompra() {
       return;
     }
 
-    Swal.fire({
-      icon: "success",
-      title: "Gracias por su compra",
-      text: "La compra se ha realizado correctamente.",
+    // Enviar carrito al backend antes de mostrar el mensaje de éxito
+    fetch("http://localhost:3000/cart", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        // Asegúrate de que el token de autorización esté en los headers si lo necesitas
+        "Authorization": `Bearer ${localStorage.getItem('token')}`
+      },
+      body: JSON.stringify({
+        userId: "usuario@mail.com", // Debes ajustar esto según el usuario actual
+        cartItems: cartItems,
+        shippingCost: getShippingCost(),
+        total: calculateSubtotal(cartItems) + getShippingCost()
+      })
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Error al guardar el carrito.");
+      }
+      return response.json();
+    })
+    .then(data => {
+      Swal.fire({
+        icon: "success",
+        title: "Gracias por su compra",
+        text: "La compra se ha realizado correctamente.",
+      });
+
+      // Limpiar campos de dirección, métodos de pago y carrito
+      document.getElementById("campo-localidad").value = "";
+      document.getElementById("campo-calle").value = "";
+      document.getElementById("campo-numero").value = "";
+      document.getElementById("campo-esquina").value = "";
+      document.querySelectorAll('input[name="tarjeta"]:checked').forEach(input => input.checked = false);
+      document.querySelectorAll('input[name="shipping"]:checked').forEach(input => input.checked = false);
+      localStorage.removeItem("cartItems");
+
+      // Redirigir al index después de un pequeño retraso
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 2600);
+    })
+    .catch(error => {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.message,
+      });
     });
-// cuando se clickea el boton de finalizar compra se elminan los datos de envio , metodo de pago y tipo de envio 
-  // tambien se borra el carrito y te redirige al index
-
-   document.getElementById("campo-localidad").value = "";
-   document.getElementById("campo-calle").value = "";
-   document.getElementById("campo-numero").value = "";
-   document.getElementById("campo-esquina").value = "";
-   document.getElementById("campo-departamento").value = "";
-
-   document.querySelectorAll('input[name="tarjeta"]:checked').forEach(input => input.checked = false);
-   document.querySelectorAll('input[name="shipping"]:checked').forEach(input => input.checked = false);
-   localStorage.removeItem("cartItems"); 
-   // Eliminar el carrito de localStorage
-    const carrito = document.getElementById("carrito");
-    carrito.innerHTML = ""; // Limpiar el DOM del carrito
-    mensaje.textContent = "No hay productos en el carrito!";
-
-     // Redirigir al index después de un pequeño retraso
-     setTimeout(() => {
-      window.location.href = "index.html";
-  }, 2600);
-  })
+  });
 }
 
 function manejarCamposVaciosDireccion(camposVacios) {
