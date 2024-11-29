@@ -82,22 +82,31 @@
   
 
 
-            <section class="card card-body container">
-                <div class="d-flex justify-content-center align-content-center my-3 navigation mb-4">
-                    <button class="btn btn-success mx-3 my-1 p-3" onclick="prevSlide()">
-                        <i class="fas fa-chevron-left"></i> Anterior
-                    </button>
-                    <span id="slideCounter" class="mx-5 fs-4">1/5</span>
-                    <button class="btn btn-success mx-3 my-1 p-3" onclick="nextSlide()">
-                        Siguiente <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
+  <section class="card card-body container">
+    <div class="d-flex justify-content-center align-content-center my-3 mb-4">
+        <button class="btn btn-success mx-3 my-1 p-3" onclick="prevSlide()">
+            <i class="fas fa-chevron-left"></i> Anterior
+        </button>
+
+        <div class="text-center mx-3 pt-3">
+            <div class="progress-container mx-auto">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <span id="slideCounter" class="mx-5 fs-4">1/3</span>
+        </div>
+
+        <button class="btn btn-success mx-3 my-1 p-3" onclick="nextSlide()">
+            Siguiente <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
+
                 <div id="slides" class="slides-container">
-                    <div class="slide" id="slide1">
+                    <div class="slide active" id="slide1">
                         <div class="cart">
                             <div class="shipping-section">
-                                <div class="shipping-address">
-                                    <h3><strong>Información de envío</strong></h3>
+                                <div class="shipping-address w-100">
+                                    <h3 class="mb-5"><strong>Información de envío</strong></h3>
                                     <label>Departamento <span style="color: red;">*</span> <input
                                             id="campo-departamento" type="text" required></label>
                                     <label>Localidad <span style="color: red;">*</span> <input id="campo-localidad"

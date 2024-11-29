@@ -1032,7 +1032,6 @@ input:checked + .slider:before {
   display: flex;
   gap: 20px;
   justify-content: center;
-  margin-top: 30px;
 }
 .cart .shipping-section div {
   background-color: white;
@@ -1131,4 +1130,110 @@ h4 {
 /* Efecto de hover para los botones */
 .confirm-button:hover, .cancel-button:hover {
   opacity: 0.8;
+}
+
+
+
+/* nuevo estilo barra progreso */
+
+
+
+/* Contenedor principal de navegación */
+.navigation {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra todos los elementos en la columna */
+  justify-content: center;
+  width: 100%;
+}
+
+/* Barra de progreso */
+.progress-container {
+  width: 80%;
+  max-width: 400px;
+  background-color: #f3f3f3;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  position: relative;
+  margin: 0 auto; /* Centrado */
+}
+
+.progress-bar {
+  height: 20px;
+  background-color: #4caf50;
+  transition: width 0.5s ease;
+}
+
+/* Indicadores de progreso */
+.progress-indicator {
+  text-align: center;
+  font-size: 1.2em;
+  margin-top: 10px;
+  color: #333;
+}
+
+/* Contenedor de los slides */
+#slides {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+/* Estilo para cada slide */
+.slide {
+  display: none; /* Ocultamos los slides inicialmente */
+  width: 100%;
+  max-width: 600px;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.slide.active {
+  display: block; /* Mostramos el slide activo */
+}
+
+/* Botones de navegación */
+.nav-buttons {
+  display: flex;
+  justify-content: space-between; /* Espacio entre los botones */
+  width: 80%; /* Ajusta el ancho según tus necesidades */
+  margin-top: 20px;
+}
+
+.nav-buttons .btn {
+  padding: 10px 20px;
+  background-color: #28a745;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  width: 45%; /* Ajusta el tamaño de los botones */
+}
+
+.nav-buttons .btn:hover {
+  background-color: #218838;
+}
+
+/* Para pantallas pequeñas */
+@media (max-width: 600px) {
+  .progress-container {
+    width: 100%;
+  }
+
+  .progress-bar {
+    height: 15px;
+  }
+
+  .nav-buttons .btn {
+    width: 48%; /* Ajusta el tamaño en pantallas pequeñas */
+  }
+
+  .text-center {
+    width: 90%;
+  }
 }

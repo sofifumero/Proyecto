@@ -283,13 +283,20 @@ function prevSlide() {
 
 function updateCounter() {
   const titulosContador = {
-    0: "Dirección",
-    1: "Tipo de envío",
-    2: "Método de pago",
+      0: "Dirección",
+      1: "Tipo de envío",
+      2: "Método de pago",
   };
+
+  // Actualiza el texto del contador
   document.getElementById('slideCounter').textContent = `${currentSlide + 1}/${totalSlides} ${titulosContador[currentSlide]}`;
-  // document.getElementById('slideCounter').textContent = titulosContador[currentSlide];
+
+  // Actualiza la barra de progreso
+  const progressBar = document.getElementById('progressBar'); // Selecciona la barra de progreso
+  const progressPercentage = ((currentSlide + 1) / totalSlides) * 100; // Calcula el porcentaje
+  progressBar.style.width = `${progressPercentage}%`; // Ajusta el ancho de la barra
 }
+
 
 document.addEventListener('DOMContentLoaded', function () {
   updateCounter();
