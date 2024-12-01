@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   mensaje.innerHTML = ""; // Limpia los mensajes previos
 
 // Verifica si el carrito está vacío
-  if (cartItems.lenght === 0) {
+  if (cartItems.length === 0) {
     mensaje.textContent = "No hay productos en el carrito!";
   } else {
     const subtotal = calculateSubtotal(cartItems);  // Calcula el subtotal
@@ -221,34 +221,34 @@ function manejarEventoFinalizarCompra() {
       }
       return response.json();
     })
-    .then(data => {
-      Swal.fire({
-        icon: "success",
-        title: "Gracias por su compra",
-        text: "La compra se ha realizado correctamente.",
-      });
 
-      // Limpiar campos de dirección, métodos de pago y carrito
-      document.getElementById("campo-localidad").value = "";
-      document.getElementById("campo-calle").value = "";
-      document.getElementById("campo-numero").value = "";
-      document.getElementById("campo-esquina").value = "";
-      document.querySelectorAll('input[name="tarjeta"]:checked').forEach(input => input.checked = false);
-      document.querySelectorAll('input[name="shipping"]:checked').forEach(input => input.checked = false);
-      localStorage.removeItem("cartItems");
-
-      // Redirigir al index después de un pequeño retraso
-      setTimeout(() => {
-        window.location.href = "index.html";
-      }, 2600);
-    })
-    .catch(error => {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: error.message,
-      });
+    Swal.fire({
+      icon: "success",
+      title: "Gracias por su compra",
+      text: "La compra se ha realizado correctamente.",
     });
+
+    // Limpiar campos de dirección, métodos de pago y carrito
+    document.getElementById("campo-localidad").value = "";
+    document.getElementById("campo-calle").value = "";
+    document.getElementById("campo-numero").value = "";
+    document.getElementById("campo-esquina").value = "";
+    document.getElementById("campo-departamento").value = "";
+
+    // Eliminar el carrito de localStorage
+    const carrito = document.getElementById("carrito");
+    const mensaje = document.getElementById("mensaje");
+    carrito.innerHTML = ""; // Limpiar el DOM del carrito
+    mensaje.textContent = "No hay productos en el carrito!";
+
+    document.querySelectorAll('input[name="tarjeta"]:checked').forEach(input => input.checked = false);
+    document.querySelectorAll('input[name="shipping"]:checked').forEach(input => input.checked = false);
+    localStorage.removeItem("cartItems");
+
+    // Redirigir al index después de un pequeño retraso
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 2600);
   });
 }
 
